@@ -4,9 +4,10 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-
+	public float initX;
+	public float initY;
 	private float moveSpeed = 10f;
-	private float jumpLength = 1f;
+	public float jumpLength = 1f;
 
     public string player;
     private string horizontal = string.Empty;
@@ -36,6 +37,10 @@ public class PlayerController : MonoBehaviour
 	// Update is called once per frame
 	void FixedUpdate ()
 	{
+		if (Input.GetButton("Reset"))
+		{
+			Application.LoadLevel("ViktorsMain");
+		}
 		if (!dead)
 		{
 			PlayerInput();
