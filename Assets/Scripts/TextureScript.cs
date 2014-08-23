@@ -4,6 +4,7 @@ using System.Collections;
 public class TextureScript : MonoBehaviour {
 
 	public Texture2D[] Textures;
+    //public GUIText TextNote;
     private const float timeBetweenTransition = 3.0f;
     private const float fadeSpeed = 3.5f;
     private const int numberOfSlides = 20;
@@ -70,6 +71,8 @@ public class TextureScript : MonoBehaviour {
         {
             this.guiTexture.texture = Textures[currentSlide];
         }
+        this.guiText.text = "(Press Esc to skip)";
+        this.guiText.transform.Translate(0, 0, 9999);
     }
 
     private void goToGame()
