@@ -8,8 +8,7 @@ public class CameraController : MonoBehaviour
     public Transform PlayerRight;
 
 	// Use this for initialization
-	void Start () {
-	
+	void Start () {	    
 	}
 	
 	// Update is called once per frame
