@@ -4,7 +4,7 @@ using System.Collections;
 public class TextureScript : MonoBehaviour {
 
 	public Texture2D[] Textures;
-    private const float timeBetweenTransition = 0.1f;
+    private const float timeBetweenTransition = 3.0f;
     private const float fadeSpeed = 3.5f;
     private const int numberOfSlides = 20;
     private float counter = 0;
@@ -20,6 +20,11 @@ public class TextureScript : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+
+        if (Input.GetButton("EscapeKey"))
+        {
+            goToGame();
+        }
 
         counter += Time.deltaTime;
         if (!fadingOut && !fadingIn && counter >= timeBetweenTransition)
@@ -59,11 +64,16 @@ public class TextureScript : MonoBehaviour {
     {
         if (currentSlide + 1 > numberOfSlides)
         {
-            Application.LoadLevel("main");
+            goToGame();
         }
         else
         {
             this.guiTexture.texture = Textures[currentSlide];
         }
+    }
+
+    private void goToGame()
+    {
+        Application.LoadLevel("main");
     }
 }
