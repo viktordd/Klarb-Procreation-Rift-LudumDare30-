@@ -6,7 +6,7 @@ public class PlayerController : MonoBehaviour
 {
 
 	private float moveSpeed = 10f;
-	private float jumpLength = 1000f;
+	private float jumpLength = 1f;
 
     public string player;
     private string horizontal = string.Empty;
@@ -15,7 +15,7 @@ public class PlayerController : MonoBehaviour
 
 	private bool grounded = true;
 	private bool jumping = false;
-	private float jumpEndTime = -1f;
+	private float jumpEndTime = 0f;
 	private bool dead = false;
 
 	public Transform groundCheck;
@@ -36,19 +36,22 @@ public class PlayerController : MonoBehaviour
 	// Update is called once per frame
 	void FixedUpdate ()
 	{
-		grounded = Physics2D.OverlapCircle(groundCheck.position, groundRadius, whatIsGround);
-	    PlayerInput();          
+		if (!dead)
+		{
+			PlayerInput();
+		}
 	}
 
 	void PlayerInput()
 	{
+		grounded = Physics2D.OverlapCircle(groundCheck.position, groundRadius, whatIsGround);
 		float hAxis = Input.GetAxis(horizontal);
 		float vAxis = Input.GetAxis(vertical);
 		bool jumpTrig = Input.GetButton(jump);
 
 		Vector2 move = new Vector2(hAxis*moveSpeed, vAxis*moveSpeed);
 
-		if (move.magnitude > 0.5)
+		if (Input.GetButton(horizontal) || Input.GetButton(vertical))
 		{
 			var angle = Mathf.Atan2(move.y, move.x)*Mathf.Rad2Deg;
 
@@ -56,23 +59,25 @@ public class PlayerController : MonoBehaviour
 		}
 		anim.SetFloat("Speed", move.magnitude);
 
-		if (jumping)
+		if (jumping && jumpEndTime < Time.timeSinceLevelLoad)
 		{
-			if (jumpEndTime < Time.timeSinceLevelLoad)
-				jumping = false;
+			jumping = false;
+			if (!grounded) dead = true;
 		}
-		else if (jumpTrig)
-		{
 
+		if (jumpTrig && !jumping && !dead)
+		{
 			jumping = true;
 			jumpEndTime = Time.timeSinceLevelLoad + jumpLength;
 		}
 
 		anim.SetBool("Jump", jumping);
 
-		if (!jumping)
-			anim.SetBool("Fall", !grounded);
-
-		rigidbody2D.velocity = move;
+		if (!jumping && !grounded)
+		{
+			anim.SetBool("Fall", true);
+			dead = true;
+		}
+		rigidbody2D.velocity = dead ? Vector2.zero : move;
 	}
 }

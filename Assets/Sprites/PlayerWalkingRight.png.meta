@@ -1,8 +1,8 @@
 fileFormatVersion: 2
-guid: d8dc8ffbce3661a4ba13d3c50a930e15
+guid: f85bd6801ff7e964d8d5ba2e90cce29e
 TextureImporter:
   fileIDToRecycleName:
-    21300000: background
+    21300000: PlayerWalkingRight
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
