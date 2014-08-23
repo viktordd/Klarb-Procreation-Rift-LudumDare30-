@@ -6,7 +6,7 @@ using System;
 public class PlayerController : MonoBehaviour
 {
 
-    private float moveSpeed = 8.0f;
+    private float moveSpeed = 10f;
 
     public string player;
     private string horizontal = string.Empty;
@@ -17,26 +17,41 @@ public class PlayerController : MonoBehaviour
 	private float groundRadius = 0.02f;
 	public LayerMask whatIsGround;
 
+	private Animator anim;
+
 	// Use this for initialization
 	void Start ()
 	{
+		anim = GetComponent<Animator>();
 	    horizontal = "Horizontal" + player;
 	    vertical = "Vertical" + player;
 	}
 	
 	// Update is called once per frame
-	void Update ()
+	void FixedUpdate ()
 	{
 		grounded = Physics2D.OverlapCircle(groundCheck.position, groundRadius, whatIsGround);
 		Debug.Log(grounded ? "Enter" : "Falling");
 	    PlayerInput();          
 	}
 
-	private void PlayerInput()
+	void PlayerInput()
 	{
 		float haxis = Input.GetAxis(horizontal);
 		float vaxis = Input.GetAxis(vertical);
-		transform.Translate(new Vector3(haxis, vaxis) * moveSpeed * Time.deltaTime);
+
+		Vector2 move = new Vector2(haxis*moveSpeed, vaxis*moveSpeed);
+
+		var angle = Mathf.Atan2(move.y, move.x)*Mathf.Rad2Deg;
+
+		transform.rotation = Quaternion.AngleAxis(angle - 90, Vector3.forward);
+
+		anim.SetFloat("Speed", move.magnitude);
+
+		rigidbody2D.velocity = move;
+
+		
+
 
 		//if (Input.GetButton("LeftLeft"))
 		//{         

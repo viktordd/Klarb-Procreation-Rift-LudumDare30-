@@ -1,8 +1,8 @@
 fileFormatVersion: 2
-guid: f696ed59c5005da48b248edc96b50879
+guid: e769176954706e648b948fd180b004f6
 TextureImporter:
   fileIDToRecycleName:
-    21300000: PlayerLeft
+    21300000: PlayerWalkingLeft
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
