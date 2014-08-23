@@ -1,7 +1,5 @@
 ﻿using System.Runtime.InteropServices;
 using UnityEngine;
-using System.Collections;
-using System;
 
 public class PlayerController : MonoBehaviour
 {
@@ -42,10 +40,12 @@ public class PlayerController : MonoBehaviour
 
 		Vector2 move = new Vector2(haxis*moveSpeed, vaxis*moveSpeed);
 
-		var angle = Mathf.Atan2(move.y, move.x)*Mathf.Rad2Deg;
+		if (move.magnitude > 0.5)
+		{
+			var angle = Mathf.Atan2(move.y, move.x)*Mathf.Rad2Deg;
 
-		transform.rotation = Quaternion.AngleAxis(angle - 90, Vector3.forward);
-
+			transform.rotation = Quaternion.AngleAxis(angle - 90, Vector3.forward);
+		}
 		anim.SetFloat("Speed", move.magnitude);
 
 		rigidbody2D.velocity = move;
