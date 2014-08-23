@@ -39,7 +39,7 @@ public class PlayerController : MonoBehaviour
 	{
 		if (Input.GetButton("Reset"))
 		{
-			Application.LoadLevel("ViktorsMain");
+			Application.LoadLevel(Application.loadedLevelName);
 		}
 		if (!dead)
 		{
@@ -52,7 +52,7 @@ public class PlayerController : MonoBehaviour
 		grounded = Physics2D.OverlapCircle(groundCheck.position, groundRadius, whatIsGround);
 		float hAxis = Input.GetAxis(horizontal);
 		float vAxis = Input.GetAxis(vertical);
-		bool jumpTrig = Input.GetButton(jump);
+		bool jumpTrig = Input.GetButtonDown(jump);
 
 		Vector2 move = new Vector2(hAxis*moveSpeed, vAxis*moveSpeed);
 
