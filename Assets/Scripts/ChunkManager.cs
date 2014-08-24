@@ -35,6 +35,8 @@ public class ChunkManager
         Chunk chunkr2 = new Chunk(2, false, false);
         Chunk chunkl3 = new Chunk(3, false, false);
         Chunk chunkr3 = new Chunk(3, true, false);
+        Chunk chunkl4 = new Chunk(4, false, false);
+        Chunk chunkr4 = new Chunk(4, true, false);
         //chunk.Rows.Count = Convert.ToInt32(chunk.Name.Substring(chunk.Name.IndexOf("-") + 1));
         currentLevel.LeftChunks.Add(chunkl1); 
         currentLevel.LeftChunks.Add(chunkl2); 
@@ -81,6 +83,58 @@ public class Chunk
                 Row.AddRow(true, true, true, true, inverse, jump, Rows);
                 Row.AddRow(false, false, false, true, inverse, jump, Rows);
                 Row.AddRow(true, true, true, true, inverse, jump, Rows);
+                break;
+            case 5:
+                break;
+            case 6:
+                break;
+            case 7:
+                break;
+            case 8:
+                break;
+            case 9:
+                break;
+            case 10:
+                break;
+            case 11:
+                break;
+            case 12:
+                break;
+            case 13:
+                break;
+            case 14:
+                break;
+            case 15:
+                break;
+            case 16:
+                break;
+            case 17:
+                break;
+            case 18:
+                break;
+            case 19:
+                break;
+            case 20:
+                break;
+            case 21:
+                break;
+            case 22:
+                break;
+            case 23:
+                break;
+            case 24:
+                break;
+            case 25:
+                break;
+            case 26:
+                break;
+            case 27:
+                break;
+            case 28:
+                break;
+            case 29:
+                break;
+            case 30:
                 break;
             default:
                 break;
