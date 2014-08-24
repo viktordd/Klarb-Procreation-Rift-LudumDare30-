@@ -16,7 +16,7 @@ public class LevelGenerator : MonoBehaviour
 	void Start ()
 	{
         ChunkManager = new ChunkManager();
-        level = ChunkManager.GetAllChunks(LevelOfStage);
+        //level = ChunkManager.GetAllChunks(LevelOfStage);
 
 	    GenerateLevel();
 	}
