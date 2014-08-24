@@ -1,8 +1,11 @@
-﻿using UnityEngine;
-using System.Collections;
+﻿using System.Collections.Generic;
+using System.Linq;
+using UnityEditorInternal;
+using UnityEngine;
 
 public class TileController : MonoBehaviour
 {
+	public string Tile;
 	private Animator anim;
 	private bool falling = false;
 	private PlayerController player;
@@ -11,6 +14,7 @@ public class TileController : MonoBehaviour
 	void Start()
 	{
 		anim = GetComponent<Animator>();
+		AnimationSwitcher.Switch(anim, Tile);
 
 	}
 	
@@ -18,7 +22,7 @@ public class TileController : MonoBehaviour
 	void Update () {
 		if (!falling && player != null && !player.Jumping)
 		{
-			StartFalling();
+			StartCrumbling();
 		}
 	}
 
@@ -32,7 +36,7 @@ public class TileController : MonoBehaviour
 				player = pl;
 			}
 			else
-				StartFalling();
+				StartCrumbling();
 		}
 	}
 
@@ -44,10 +48,15 @@ public class TileController : MonoBehaviour
 		}
 	}
 
-	private void StartFalling()
+	private void StartCrumbling()
 	{
 		falling = true;
-		anim.SetBool("Falling", true);
+		anim.SetBool("Crumbling", true);
+	}
+
+	public void StartFalling()
+	{
+		Destroy(collider2D);
 	}
 
 	public void EndFalling()
