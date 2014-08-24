@@ -44,7 +44,7 @@ public class LevelGenerator : MonoBehaviour
                     Instantiate(chunkPrefab, position, Quaternion.AngleAxis(0, Vector3.forward));
                 }
             }
-            heighestChunk += chunk.Height;
+            //heighestChunk += chunk.Height;
         }
         heighestChunk = 0;
         while (heighestChunk < SizeOfStage)
@@ -60,7 +60,7 @@ public class LevelGenerator : MonoBehaviour
                     Instantiate(chunkPrefab, position, Quaternion.AngleAxis(0, Vector3.forward));
                 }
             }
-            heighestChunk += chunk.Height;
+            //heighestChunk += chunk.Height;
         }
     }
 }

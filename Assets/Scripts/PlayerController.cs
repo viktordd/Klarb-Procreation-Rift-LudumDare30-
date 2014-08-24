@@ -1,22 +1,20 @@
-﻿using System.Runtime.InteropServices;
+﻿using System;
+using System.Runtime.InteropServices;
 using System.Threading;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-	public float initX;
-	public float initY;
-	private float moveSpeed = 10f;
-	public float jumpLength = 1f;
+	private float moveSpeed = 5f;
 
     public string player;
     private string horizontal = string.Empty;
     private string vertical = string.Empty;
     private string jump = string.Empty;
 
+	public bool Jumping { get { return jumping; } }
 	private bool grounded = true;
 	private bool jumping = false;
-	private float jumpEndTime = 0f;
 	private bool dead = false;
 
 	public Transform groundCheck;
@@ -24,11 +22,13 @@ public class PlayerController : MonoBehaviour
 	public LayerMask whatIsGround;
 
 	private Animator anim;
+	private CircleCollider2D colider;
 
 	// Use this for initialization
 	void Start ()
 	{
 		anim = GetComponent<Animator>();
+		colider = GetComponent<CircleCollider2D>();
 	    horizontal = "Horizontal" + player;
 	    vertical = "Vertical" + player;
 	    jump = "Jump" + player;
@@ -64,25 +64,29 @@ public class PlayerController : MonoBehaviour
 		}
 		anim.SetFloat("Speed", move.magnitude);
 
-		if (jumping && jumpEndTime < Time.timeSinceLevelLoad)
-		{
-			jumping = false;
-			if (!grounded) dead = true;
-		}
-
-		if (jumpTrig && !jumping && !dead)
+		if (jumpTrig && grounded && !dead)
 		{
 			jumping = true;
-			jumpEndTime = Time.timeSinceLevelLoad + jumpLength;
+			anim.SetBool("Jump", true);
 		}
-
-		anim.SetBool("Jump", jumping);
 
 		if (!jumping && !grounded)
 		{
-			anim.SetBool("Fall", true);
 			dead = true;
+			anim.SetBool("Fall", true);
 		}
 		rigidbody2D.velocity = dead ? Vector2.zero : move;
+	}
+
+	public void EndJump()
+	{
+		jumping = false;
+		anim.SetBool("Jump", false);
+		if (!grounded)
+		{
+			dead = true;
+			anim.SetBool("Fall", true);
+			rigidbody2D.velocity = Vector2.zero;
+		}
 	}
 }

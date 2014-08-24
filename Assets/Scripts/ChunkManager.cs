@@ -6,33 +6,37 @@ using System.Collections.Generic;
 public class ChunkManager
 {
 
-    // Use this for initialization
-	void Start () {
-	
+	// Use this for initialization
+	private void Start()
+	{
+
 	}
-	
+
 	// Update is called once per frame
-	void Update () {
-	
+	private void Update()
+	{
+
 	}
-    /// <summary>
-    /// GetAllChunks, depending on the level will create a left and a right list of chunks.
-    /// The earlier levels will be very similar while the later levels will have inverse and 
-    /// jumps as well as non-matching chunks.
-    /// </summary>
-    /// <param name="level"></param>
-    /// <returns></returns>
-    public Level GetAllChunks(int level)
-    {
-        Level currentLevel = new Level();
-        //Figure out based off level what the leftside and rightside will be. 
-        Chunk chunk = new Chunk();
-        chunk.Name = "Chunk1-5";
-        chunk.Height = Convert.ToInt32(chunk.Name.Substring(chunk.Name.IndexOf("-") + 1));
-        currentLevel.LeftChunks.Add(chunk);
-        currentLevel.RightChunks.Add(chunk);
-        return currentLevel;
-    }
+
+	/// <summary>
+	/// GetAllChunks, depending on the level will create a left and a right list of chunks.
+	/// The earlier levels will be very similar while the later levels will have inverse and 
+	/// jumps as well as non-matching chunks.
+	/// </summary>
+	/// <param name="level"></param>
+	/// <returns></returns>
+	public Level GetAllChunks(int level)
+	{
+		Level currentLevel = new Level();
+		//Figure out based off level what the leftside and rightside will be. 
+		Chunk chunk = new Chunk();
+		chunk.Name = "Chunk1-5";
+		//chunk.Height = Convert.ToInt32(chunk.Name.Substring(chunk.Name.IndexOf("-") + 1));
+		currentLevel.LeftChunks.Add(chunk);
+		currentLevel.RightChunks.Add(chunk);
+		return currentLevel;
+	}
+}
 
 public class Chunk
 {
