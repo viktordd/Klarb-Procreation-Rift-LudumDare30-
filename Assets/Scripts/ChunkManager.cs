@@ -31,39 +31,26 @@ public class ChunkManager
         int numOfChunks = levelOfStage * 2 + 6;
         while (numOfChunks > 0)
         {
-            Chunk connector = new Chunk(0,true,true);
             int difficulty = random.Next(1, 3 + levelOfStage * 3) % 30;
-            bool jump = levelOfStage <= 3 ? false : levelOfStage <= 5 ? random.Next(0, 4) == 4 : random.Next(0, 1) == 1;
-            bool inverse = random.Next(0, 1) == 1;
+            bool jump = levelOfStage <= 3 ? false : levelOfStage <= 5 ? random.Next(0, 5) == 4 : random.Next(0, 2) == 1;
+            bool inverse = random.Next(0, 2) == 1;
             Chunk randoChunkLeft = new Chunk(difficulty, false, jump);
-            Chunk randoChunkRight = new Chunk(difficulty, inverse, jump);
-            currentLevel.LeftChunks.Add(connector);
+            Chunk randoChunkRight = new Chunk(difficulty, inverse, jump);//Only inverse one side
+            if (currentLevel.LeftChunks.Count > 0)
+            {
+                Chunk connectorLeft = new Chunk(currentLevel.LeftChunks[currentLevel.LeftChunks.Count - 1].GetLastRow(), randoChunkLeft.Rows[0]);
+                currentLevel.LeftChunks.Add(connectorLeft);
+            }
+
+            if (currentLevel.RightChunks.Count > 0)
+            {
+                Chunk connectorRight = new Chunk(currentLevel.RightChunks[currentLevel.RightChunks.Count - 1].GetLastRow(), randoChunkRight.Rows[0]);
+                currentLevel.RightChunks.Add(connectorRight);
+            }
             currentLevel.LeftChunks.Add(randoChunkLeft);
-            currentLevel.RightChunks.Add(connector);
             currentLevel.RightChunks.Add(randoChunkRight);
             numOfChunks--;
         }
-
-        //Figure out based off level what the leftside and rightside will be. 
-        //Chunk chunkl1 = new Chunk(1, false, false);
-        //Chunk chunkr1 = new Chunk(1, false, false);
-        //Chunk chunkl2 = new Chunk(2, false, false);
-        //Chunk chunkr2 = new Chunk(2, false, false);
-        //Chunk chunkl3 = new Chunk(3, false, false);
-        //Chunk chunkr3 = new Chunk(3, true, false);
-        //Chunk chunkl4 = new Chunk(4, false, false);
-        //Chunk chunkr4 = new Chunk(4, true, false);
-        ////chunk.Rows.Count = Convert.ToInt32(chunk.Name.Substring(chunk.Name.IndexOf("-") + 1));
-        //currentLevel.LeftChunks.Add(chunkl1);
-        //currentLevel.LeftChunks.Add(chunkl2);
-        //currentLevel.LeftChunks.Add(chunkl3);
-        //currentLevel.LeftChunks.Add(chunkl4);
-        //currentLevel.LeftChunks.Add(chunkl2);
-        //currentLevel.RightChunks.Add(chunkr1);
-        //currentLevel.RightChunks.Add(chunkr2);
-        //currentLevel.RightChunks.Add(chunkr3);
-        //currentLevel.RightChunks.Add(chunkr4);
-        //currentLevel.RightChunks.Add(chunkr2);
         return currentLevel;
     }
 }
@@ -71,6 +58,83 @@ public class Chunk
 {
     public List<Row> Rows { get; set; }
     public int Difficulty { get; set; }
+    public Chunk(Row previous, Row next)
+    {
+        bool reqfl = false;
+        bool reqml = false;
+        bool reqmr = false;
+        bool reqfr = false;
+        Rows = new List<Row>();
+        if (previous.FarLeft)
+        {
+            reqfl = true;
+            if (next.FarRight)
+            {
+                reqfr = true;
+                reqmr = true;
+                reqml = true;
+            }
+            else if (next.MidRight)
+            {
+                reqmr = true;
+                reqml = true;
+            }
+            else if (next.MidLeft)
+            {
+                reqml = true;
+            }
+        }
+        else if (previous.MidLeft)
+        {
+            reqml = true;
+            if (next.FarRight)
+            {
+                reqfr = true;
+                reqmr = true;
+            }
+            else if (next.MidRight)
+            {
+                reqmr = true;
+            }
+            if (next.FarLeft) //not else as can run both ways
+            {
+                reqfl = true;
+            }
+        }
+        else if (previous.MidRight)
+        {
+            reqmr = true;
+            if (next.FarRight)
+            {
+                reqfr = true;
+            }
+            if (next.FarLeft) //not else as can run both ways
+            {
+                reqfl = true;
+                reqml = true;
+            }
+        }
+        else
+        {
+            reqfr = true;
+            if (next.FarLeft)
+            {
+                reqfl = true;
+                reqml = true;
+                reqmr = true;
+            }
+            else if (next.MidLeft)
+            {
+                reqml = true;
+                reqmr = true;
+            }
+            else if (next.MidRight)
+            {
+                reqmr = true;
+            }
+        }
+        Rows.Add(new Row(reqfl, reqml, reqmr, reqfr));
+    }
     public Chunk(int diff, bool inverse, bool jump)
     {
         Rows = new List<Row>();
@@ -298,6 +362,12 @@ public class Chunk
             default:
                 break;
         }
+    }
+    public Row GetLastRow()
+    {
+        if (this.Rows.Count != 0)
+            return this.Rows[this.Rows.Count - 1];
+        return null;
     }
 }
 public class Level
