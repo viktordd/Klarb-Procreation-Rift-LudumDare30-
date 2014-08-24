@@ -1,9 +1,11 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System;
 
 public class MyButton : MonoBehaviour {
 
     public Sprite[] SpriteCollection;
+    public Action ButtonFunction;
 
 	// Use this for initialization
 	void Start () {
@@ -38,6 +40,6 @@ public class MyButton : MonoBehaviour {
     }
     public void Hit()
     {
-        Application.LoadLevel("SlideScene");
+        ButtonFunction();
     }
 }
