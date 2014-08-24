@@ -7,7 +7,6 @@ public class TextureScript : MonoBehaviour {
     //public GUIText TextNote;
     private const float timeBetweenTransition = 3.0f;
     private const float fadeSpeed = 3.5f;
-    private const int numberOfSlides = 20;
     private float counter = 0;
     private int currentSlide = 0;
     private float opacityValue = 0.5f;
@@ -63,7 +62,7 @@ public class TextureScript : MonoBehaviour {
 
     private void loadSlide()
     {
-        if (currentSlide + 1 > numberOfSlides)
+        if (currentSlide + 1 > Textures.Length)
         {
             goToGame();
         }

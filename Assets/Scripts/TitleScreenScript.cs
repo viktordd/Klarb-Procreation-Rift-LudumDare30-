@@ -10,20 +10,36 @@ public class TitleScreenScript : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-
+        ButtonList[0].ButtonFunction = () => { Application.LoadLevel("SlideScene"); };
+        ButtonList[1].ButtonFunction = () => { Application.LoadLevel("ControlsScene"); };
     }
 
     // Update is called once per frame
     void Update()
     {
         ButtonList[currentIndex].Select();
-        if (Input.GetButtonDown("DownKey"))
+
+        if (Input.GetButtonDown("ConfirmKey"))
         {
-            currentIndex++;
+            ButtonList[currentIndex].Hit();
         }
-        if (currentIndex >= ButtonList.Count)
+        else if (Input.GetButtonDown("DownKey"))
         {
-            currentIndex = 0;
+            ButtonList[currentIndex].Deselect();
+            currentIndex++;
+            if (currentIndex >= ButtonList.Count)
+            {
+                currentIndex = 0;
+            }
+        }
+        else if (Input.GetButtonDown("UpKey"))
+        {
+            ButtonList[currentIndex].Deselect();
+            currentIndex--;
+            if (currentIndex < 0)
+            {
+                currentIndex = (ButtonList.Count - 1);
+            }
         }
     }
 }
