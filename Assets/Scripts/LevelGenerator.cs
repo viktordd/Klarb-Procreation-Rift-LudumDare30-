@@ -6,16 +6,17 @@ using Random = UnityEngine.Random;
 
 public class LevelGenerator : MonoBehaviour
 {
+    public int LevelOfStage;
     public int SizeOfStage;
     public ChunkManager ChunkManager;
-    private List<Chunk> chunks;
-    public GameObject[] chunkPrefabs; 
-
+    private Level level;
+    public GameObject[] chunkPrefabs;
+    public Chunk[] Chunks;
 	// Use this for initialization
 	void Start ()
 	{
         ChunkManager = new ChunkManager();
-        chunks = ChunkManager.GetAllChunks();
+        level = ChunkManager.GetAllChunks(LevelOfStage);
 
 	    GenerateLevel();
 	}
@@ -27,28 +28,39 @@ public class LevelGenerator : MonoBehaviour
 
     void GenerateLevel()
     {
-        var topOfChunk = 0;
-        var botOfChunk = 0;
-        var chunkLength = 0;
+        int heighestChunk = 0;
         Vector3 position = new Vector3();
-        
-        while (topOfChunk < SizeOfStage)
-        {
-            int randomNum = Random.Range(1, chunks.Count);
-            var chunk = chunks[randomNum - 1];
-            chunkLength = chunk.ChunkLength;
-            position = new Vector3(-5.0f, topOfChunk);
 
-            foreach (var chunkPrefab in chunkPrefabs )
+        while (heighestChunk < SizeOfStage)
+        {
+            int randomNum = Random.Range(1, level.LeftChunks.Count);
+            Chunk chunk = level.LeftChunks[randomNum - 1];
+            position = new Vector3(-5.0f, heighestChunk);
+
+            foreach (GameObject chunkPrefab in chunkPrefabs)
             {
-                if (chunkPrefab.name == chunk.ChunkName)
+                if (chunkPrefab.name == chunk.Name)
                 {
                     Instantiate(chunkPrefab, position, Quaternion.AngleAxis(0, Vector3.forward));
                 }
             }
+            heighestChunk += chunk.Height;
+        }
+        heighestChunk = 0;
+        while (heighestChunk < SizeOfStage)
+        {
+            int randomNum = Random.Range(1, level.RightChunks.Count);
+            Chunk chunk = level.RightChunks[randomNum - 1];
+            position = new Vector3(5.0f, heighestChunk);
 
-            
-            topOfChunk += chunkLength;
+            foreach (GameObject chunkPrefab in chunkPrefabs)
+            {
+                if (chunkPrefab.name == chunk.Name)
+                {
+                    Instantiate(chunkPrefab, position, Quaternion.AngleAxis(0, Vector3.forward));
+                }
+            }
+            heighestChunk += chunk.Height;
         }
     }
 }
