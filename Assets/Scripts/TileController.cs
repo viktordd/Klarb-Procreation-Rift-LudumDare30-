@@ -6,6 +6,8 @@ using UnityEngine;
 public class TileController : MonoBehaviour
 {
 	public string Tile;
+	public float crumbleScale = 1f;
+
 	private Animator anim;
 	private bool falling = false;
 	private PlayerController player;
@@ -16,6 +18,15 @@ public class TileController : MonoBehaviour
 		anim = GetComponent<Animator>();
 		SwitchHelper.Switch(anim, Tile);
 
+		var ac = GetComponent<Animator>().runtimeAnimatorController as AnimatorController;
+		// States on layer 0:
+		StateMachine sm = ac.GetLayer(0).stateMachine;
+		for (int i = 0; i < sm.stateCount; i++)
+		{
+			State state = sm.GetState(i);
+			if (state.name == "TileCrumbling")
+				state.speed = crumbleScale;
+		}
 	}
 	
 	// Update is called once per frame
