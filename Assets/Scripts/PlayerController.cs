@@ -5,7 +5,6 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
 	private float moveSpeed = 3f;
-	public float jumpScale = 1f;
 
     public string player;
     private string horizontal = string.Empty;
