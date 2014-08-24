@@ -10,13 +10,14 @@ public class LevelGenerator : MonoBehaviour
     public int SizeOfStage;
     public ChunkManager ChunkManager;
     private Level level;
-    public GameObject[] chunkPrefabs;
+    public GameObject leftTile;
+    public GameObject rightTile;
     public Chunk[] Chunks;
 	// Use this for initialization
 	void Start ()
 	{
         ChunkManager = new ChunkManager();
-        //level = ChunkManager.GetAllChunks(LevelOfStage);
+        level = ChunkManager.GetAllChunks(LevelOfStage);
 
 	    GenerateLevel();
 	}
@@ -28,39 +29,63 @@ public class LevelGenerator : MonoBehaviour
 
     void GenerateLevel()
     {
-        int heighestChunk = 0;
+        int heighestLeftChunk = 0;
+        int heighestRightChunk = 0;
         Vector3 position = new Vector3();
 
-        while (heighestChunk < SizeOfStage)
+        foreach (Chunk chunk in level.LeftChunks)
         {
-            int randomNum = Random.Range(1, level.LeftChunks.Count);
-            Chunk chunk = level.LeftChunks[randomNum - 1];
-            position = new Vector3(-5.0f, heighestChunk);
-
-            foreach (GameObject chunkPrefab in chunkPrefabs)
+            foreach (Row row in chunk.Rows)
             {
-                if (chunkPrefab.name == chunk.Name)
+                if (row.FarLeft)
                 {
-                    Instantiate(chunkPrefab, position, Quaternion.AngleAxis(0, Vector3.forward));
+                    position = new Vector3(-5.0f, heighestLeftChunk);
+                    Instantiate(leftTile, position, Quaternion.AngleAxis(0, Vector3.forward));
                 }
+                if (row.MidLeft)
+                {
+                    position = new Vector3(-4.0f, heighestLeftChunk);
+                    Instantiate(leftTile, position, Quaternion.AngleAxis(0, Vector3.forward));
+                }
+                if (row.MidRight)
+                {
+                    position = new Vector3(-3.0f, heighestLeftChunk);
+                    Instantiate(leftTile, position, Quaternion.AngleAxis(0, Vector3.forward));
+                }
+                if (row.FarRight)
+                {
+                    position = new Vector3(-2.0f, heighestLeftChunk);
+                    Instantiate(leftTile, position, Quaternion.AngleAxis(0, Vector3.forward));
+                }
+                heighestLeftChunk++;
             }
-            //heighestChunk += chunk.Height;
         }
-        heighestChunk = 0;
-        while (heighestChunk < SizeOfStage)
+        foreach (Chunk chunk in level.RightChunks)
         {
-            int randomNum = Random.Range(1, level.RightChunks.Count);
-            Chunk chunk = level.RightChunks[randomNum - 1];
-            position = new Vector3(5.0f, heighestChunk);
-
-            foreach (GameObject chunkPrefab in chunkPrefabs)
+            foreach (Row row in chunk.Rows)
             {
-                if (chunkPrefab.name == chunk.Name)
+                if (row.FarLeft)
                 {
-                    Instantiate(chunkPrefab, position, Quaternion.AngleAxis(0, Vector3.forward));
+                    position = new Vector3(2.0f, heighestRightChunk);
+                    Instantiate(rightTile, position, Quaternion.AngleAxis(0, Vector3.forward));
                 }
+                if (row.MidLeft)
+                {
+                    position = new Vector3(3.0f, heighestRightChunk);
+                    Instantiate(rightTile, position, Quaternion.AngleAxis(0, Vector3.forward));
+                }
+                if (row.MidRight)
+                {
+                    position = new Vector3(4.0f, heighestRightChunk);
+                    Instantiate(rightTile, position, Quaternion.AngleAxis(0, Vector3.forward));
+                }
+                if (row.FarRight)
+                {
+                    position = new Vector3(5.0f, heighestRightChunk);
+                    Instantiate(rightTile, position, Quaternion.AngleAxis(0, Vector3.forward));
+                }
+                heighestRightChunk++;
             }
-            //heighestChunk += chunk.Height;
         }
     }
 }

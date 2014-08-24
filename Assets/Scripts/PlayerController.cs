@@ -1,16 +1,17 @@
-﻿using System;
-using System.Runtime.InteropServices;
-using System.Threading;
+﻿using System.Diagnostics;
+using System.Linq;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-	private float moveSpeed = 5f;
+	private float moveSpeed = 3f;
+	public float jumpScale = 1f;
 
     public string player;
     private string horizontal = string.Empty;
     private string vertical = string.Empty;
-    private string jump = string.Empty;
+	private string jump = string.Empty;
+	private string reset = string.Empty;
 
 	public bool Jumping { get { return jumping; } }
 	private bool grounded = true;
@@ -18,26 +19,28 @@ public class PlayerController : MonoBehaviour
 	private bool dead = false;
 
 	public Transform groundCheck;
-	private float groundRadius = 0.02f;
+	private float groundRadius = 0.01f;
 	public LayerMask whatIsGround;
 
 	private Animator anim;
-	private CircleCollider2D colider;
 
 	// Use this for initialization
 	void Start ()
 	{
 		anim = GetComponent<Animator>();
-		colider = GetComponent<CircleCollider2D>();
-	    horizontal = "Horizontal" + player;
+
+		SwitchHelper.Switch(anim, player);
+
+		horizontal = "Horizontal" + player;
 	    vertical = "Vertical" + player;
-	    jump = "Jump" + player;
+		jump = "Jump" + player;
+		reset = "Reset" + player;
 	}
-	
+
 	// Update is called once per frame
 	void FixedUpdate ()
 	{
-		if (Input.GetButton("Reset"))
+		if (Input.GetButton(reset))
 		{
 			Application.LoadLevel(Application.loadedLevelName);
 		}
@@ -55,14 +58,13 @@ public class PlayerController : MonoBehaviour
 		bool jumpTrig = Input.GetButtonDown(jump);
 
 		Vector2 move = new Vector2(hAxis*moveSpeed, vAxis*moveSpeed);
+		anim.SetFloat("Speed", move.magnitude);
 
 		if (Input.GetButton(horizontal) || Input.GetButton(vertical))
 		{
 			var angle = Mathf.Atan2(move.y, move.x)*Mathf.Rad2Deg;
-
 			transform.rotation = Quaternion.AngleAxis(angle - 90, Vector3.forward);
 		}
-		anim.SetFloat("Speed", move.magnitude);
 
 		if (jumpTrig && grounded && !dead)
 		{
@@ -78,6 +80,7 @@ public class PlayerController : MonoBehaviour
 		rigidbody2D.velocity = dead ? Vector2.zero : move;
 	}
 
+	// Called from at the end of Jump of animation.
 	public void EndJump()
 	{
 		jumping = false;

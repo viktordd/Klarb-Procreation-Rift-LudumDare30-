@@ -1,8 +1,13 @@
-﻿using UnityEngine;
-using System.Collections;
+﻿using System.Collections.Generic;
+using System.Linq;
+using UnityEditorInternal;
+using UnityEngine;
 
 public class TileController : MonoBehaviour
 {
+	public string Tile;
+	public float crumbleScale = 1f;
+
 	private Animator anim;
 	private bool falling = false;
 	private PlayerController player;
@@ -11,14 +16,24 @@ public class TileController : MonoBehaviour
 	void Start()
 	{
 		anim = GetComponent<Animator>();
+		SwitchHelper.Switch(anim, Tile);
 
+		var ac = GetComponent<Animator>().runtimeAnimatorController as AnimatorController;
+		// States on layer 0:
+		StateMachine sm = ac.GetLayer(0).stateMachine;
+		for (int i = 0; i < sm.stateCount; i++)
+		{
+			State state = sm.GetState(i);
+			if (state.name == "TileCrumbling")
+				state.speed = crumbleScale;
+		}
 	}
 	
 	// Update is called once per frame
 	void Update () {
 		if (!falling && player != null && !player.Jumping)
 		{
-			StartFalling();
+			StartCrumbling();
 		}
 	}
 
@@ -32,7 +47,7 @@ public class TileController : MonoBehaviour
 				player = pl;
 			}
 			else
-				StartFalling();
+				StartCrumbling();
 		}
 	}
 
@@ -44,10 +59,15 @@ public class TileController : MonoBehaviour
 		}
 	}
 
-	private void StartFalling()
+	private void StartCrumbling()
 	{
 		falling = true;
-		anim.SetBool("Falling", true);
+		anim.SetBool("Crumbling", true);
+	}
+
+	public void StartFalling()
+	{
+		Destroy(collider2D);
 	}
 
 	public void EndFalling()
