@@ -12,3 +12,5 @@ Assets/UnityVs
 /*.userprefs
 /*.pidb
 /*.booproj
+Assets/Scripts/ChunkManager.cs
+Assets/Scripts/ChunkManager.cs
