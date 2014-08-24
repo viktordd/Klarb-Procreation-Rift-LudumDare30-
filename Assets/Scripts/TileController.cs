@@ -14,7 +14,7 @@ public class TileController : MonoBehaviour
 	void Start()
 	{
 		anim = GetComponent<Animator>();
-		AnimationSwitcher.Switch(anim, Tile);
+		SwitchHelper.Switch(anim, Tile);
 
 	}
 	

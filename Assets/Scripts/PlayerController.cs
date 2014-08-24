@@ -28,7 +28,7 @@ public class PlayerController : MonoBehaviour
 	{
 		anim = GetComponent<Animator>();
 
-		AnimationSwitcher.Switch(anim, player);
+		SwitchHelper.Switch(anim, player);
 
 		horizontal = "Horizontal" + player;
 	    vertical = "Vertical" + player;

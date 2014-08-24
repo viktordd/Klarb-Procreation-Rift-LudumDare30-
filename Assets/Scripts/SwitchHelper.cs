@@ -1,7 +1,7 @@
 ﻿using System.Linq;
 using UnityEngine;
 
-public class AnimationSwitcher
+public class SwitchHelper
 {
 	public static void Switch(Animator anim, string endsWith)
 	{
