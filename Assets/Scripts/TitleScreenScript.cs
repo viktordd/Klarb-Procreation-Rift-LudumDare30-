@@ -11,7 +11,7 @@ public class TitleScreenScript : MonoBehaviour
     void Start()
     {
         ButtonList[0].ButtonFunction = () => { Application.LoadLevel("SlideScene"); };
-        ButtonList[0].ButtonFunction = () => { Application.LoadLevel("SlideScene"); };
+        ButtonList[1].ButtonFunction = () => { Application.LoadLevel("ControlsScene"); };
     }
 
     // Update is called once per frame

@@ -7,14 +7,16 @@ public class ChunkManager
 {
 
     // Use this for initialization
-	void Start () {
-	
-	}
-	
-	// Update is called once per frame
-	void Update () {
-	
-	}
+    void Start()
+    {
+
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+
+    }
     /// <summary>
     /// GetAllChunks, depending on the level will create a left and a right list of chunks.
     /// The earlier levels will be very similar while the later levels will have inverse and 
@@ -25,14 +27,15 @@ public class ChunkManager
     public Level GetAllChunks(int level)
     {
         Level currentLevel = new Level();
-        //Figure out based off level what the leftside and rightside will be. 
-        Chunk chunk = new Chunk();
-        chunk.Name = "Chunk1-5";
-        chunk.Height = Convert.ToInt32(chunk.Name.Substring(chunk.Name.IndexOf("-") + 1));
-        currentLevel.LeftChunks.Add(chunk);
-        currentLevel.RightChunks.Add(chunk);
+        ////Figure out based off level what the leftside and rightside will be. 
+        //Chunk chunk = new Chunk();
+        //chunk.Name = "Chunk1-5";
+        //chunk.Height = Convert.ToInt32(chunk.Name.Substring(chunk.Name.IndexOf("-") + 1));
+        //currentLevel.LeftChunks.Add(chunk);
+        //currentLevel.RightChunks.Add(chunk);
         return currentLevel;
     }
+}
 
 public class Chunk
 {
@@ -48,7 +51,7 @@ public class Chunk
     public Boolean EndMidRight { get; set; }
     public Boolean EndFarRight { get; set; }
     public Chunk()
-    {   
+    {
     }
 }
 public class Level
@@ -63,10 +66,10 @@ public class Level
 }
 public class ChunkRow
 {
-    public Boolean FarLeft {get;set;}
-    public Boolean MidLeft  {get;set;}
-    public Boolean MidRight {get;set;}
-    public Boolean FarRight {get;set;}
+    public Boolean FarLeft { get; set; }
+    public Boolean MidLeft { get; set; }
+    public Boolean MidRight { get; set; }
+    public Boolean FarRight { get; set; }
     public ChunkRow()
     {
 
