@@ -58,6 +58,11 @@ public class Chunk
 {
     public List<Row> Rows { get; set; }
     public int Difficulty { get; set; }
+    /// <summary>
+    /// fills in the chunks between rows with required squares
+    /// </summary>
+    /// <param name="previous"></param>
+    /// <param name="next"></param>
     public Chunk(Row previous, Row next)
     {
         bool reqfl = false;
@@ -111,6 +116,10 @@ public class Chunk
             if (next.FarLeft) //not else as can run both ways
             {
                 reqfl = true;
+                reqml = true;
+            }
+            else if (next.MidLeft)
+            {
                 reqml = true;
             }
         }
@@ -253,39 +262,61 @@ public class Chunk
                 Row.AddRow(true, null, false, true, inverse, jump, Rows);
                 break;
             case 15:
-                Row.AddRow(false, true, false, false, inverse, jump, Rows);
-                Row.AddRow(false, true, false, false, inverse, jump, Rows);
-                Row.AddRow(false, true, false, false, inverse, jump, Rows);
-                Row.AddRow(false, true, false, false, inverse, jump, Rows);
-                Row.AddRow(false, true, false, false, inverse, jump, Rows);
+                Row.AddRow(true, false, false, false, inverse, jump, Rows);
+                Row.AddRow(true, true, false, false, inverse, jump, Rows);
+                Row.AddRow(false, true, true, false, inverse, jump, Rows);
+                Row.AddRow(false, false, true, true, inverse, jump, Rows);
+                Row.AddRow(false, false, false, true, inverse, jump, Rows);
+                Row.AddRow(false, false, false, null, inverse, jump, Rows);
+                Row.AddRow(false, false, true, true, inverse, jump, Rows);
+                Row.AddRow(false, true, true, false, inverse, jump, Rows);
+                Row.AddRow(true, true, false, false, inverse, jump, Rows);
+                Row.AddRow(true, false, false, false, inverse, jump, Rows);
                 break;
             case 16:
-                Row.AddRow(false, true, false, false, inverse, jump, Rows);
-                Row.AddRow(false, true, false, false, inverse, jump, Rows);
-                Row.AddRow(false, true, false, false, inverse, jump, Rows);
-                Row.AddRow(false, true, false, false, inverse, jump, Rows);
-                Row.AddRow(false, true, false, false, inverse, jump, Rows);
+                Row.AddRow(true, false, false, false, inverse, jump, Rows);
+                Row.AddRow(true, true, false, false, inverse, jump, Rows);
+                Row.AddRow(false, true, true, false, inverse, jump, Rows);
+                Row.AddRow(true, false, true, true, inverse, jump, Rows);
+                Row.AddRow(true, false, false, true, inverse, jump, Rows);
+                Row.AddRow(null, false, false, null, inverse, jump, Rows);
+                Row.AddRow(true, false, true, true, inverse, jump, Rows);
+                Row.AddRow(false, true, true, false, inverse, jump, Rows);
+                Row.AddRow(true, true, false, false, inverse, jump, Rows);
+                Row.AddRow(true, false, false, false, inverse, jump, Rows);
                 break;
             case 17:
-                Row.AddRow(false, true, false, false, inverse, jump, Rows);
-                Row.AddRow(false, true, false, false, inverse, jump, Rows);
-                Row.AddRow(false, true, false, false, inverse, jump, Rows);
-                Row.AddRow(false, true, false, false, inverse, jump, Rows);
-                Row.AddRow(false, true, false, false, inverse, jump, Rows);
+                Row.AddRow(true, false, false, true, inverse, jump, Rows);
+                Row.AddRow(true, true, true, false, inverse, jump, Rows);
+                Row.AddRow(false, true, true, false, inverse, jump, Rows);
+                Row.AddRow(true, false, null, true, inverse, jump, Rows);
+                Row.AddRow(false, true, false, true, inverse, jump, Rows);
+                Row.AddRow(false, true, false, null, inverse, jump, Rows);
+                Row.AddRow(false, null, true, true, inverse, jump, Rows);
+                Row.AddRow(false, true, true, false, inverse, jump, Rows);
+                Row.AddRow(true, true, false, false, inverse, jump, Rows);
+                Row.AddRow(true, false, false, false, inverse, jump, Rows);
                 break;
             case 18:
                 Row.AddRow(false, true, false, false, inverse, jump, Rows);
                 Row.AddRow(false, true, false, false, inverse, jump, Rows);
-                Row.AddRow(false, true, false, false, inverse, jump, Rows);
-                Row.AddRow(false, true, false, false, inverse, jump, Rows);
-                Row.AddRow(false, true, false, false, inverse, jump, Rows);
+                Row.AddRow(false, true, true, true, inverse, jump, Rows);
+                Row.AddRow(false, true, false, true, inverse, jump, Rows);
+                Row.AddRow(false, true, false, true, inverse, jump, Rows);
+                Row.AddRow(true, true, false, true, inverse, jump, Rows);
+                Row.AddRow(true, false, false, true, inverse, jump, Rows);
+                Row.AddRow(true, false, true, true, inverse, jump, Rows);
+                Row.AddRow(true, false, true, false, inverse, jump, Rows);
+                Row.AddRow(true, true, true, false, inverse, jump, Rows);
+                Row.AddRow(false, false, true, false, inverse, jump, Rows);
                 break;
             case 19:
                 Row.AddRow(false, true, false, false, inverse, jump, Rows);
-                Row.AddRow(false, true, false, false, inverse, jump, Rows);
-                Row.AddRow(false, true, false, false, inverse, jump, Rows);
-                Row.AddRow(false, true, false, false, inverse, jump, Rows);
-                Row.AddRow(false, true, false, false, inverse, jump, Rows);
+                Row.AddRow(false, false, false, false, inverse, jump, Rows);
+                Row.AddRow(true, true, true, false, inverse, jump, Rows);
+                Row.AddRow(true, false, true, false, inverse, jump, Rows);
+                Row.AddRow(true, false, true, false, inverse, jump, Rows);
+                Row.AddRow(false, true, true, false, inverse, jump, Rows);
                 break;
             case 20:
                 Row.AddRow(true, false, false, false, inverse, jump, Rows);
@@ -297,60 +328,88 @@ public class Chunk
                 Row.AddRow(false, false, false, true, inverse, jump, Rows);
                 break;
             case 21:
-                Row.AddRow(false, true, false, false, inverse, jump, Rows);
-                Row.AddRow(false, true, false, false, inverse, jump, Rows);
-                Row.AddRow(false, true, false, false, inverse, jump, Rows);
-                Row.AddRow(false, true, false, false, inverse, jump, Rows);
-                Row.AddRow(false, true, false, false, inverse, jump, Rows);
+                Row.AddRow(false, true, false, true, inverse, jump, Rows);
+                Row.AddRow(false, true, false, true, inverse, jump, Rows);
+                Row.AddRow(false, true, false, true, inverse, jump, Rows);
+                Row.AddRow(true, true, true, true, inverse, jump, Rows);
+                Row.AddRow(false, null, false, null, inverse, jump, Rows);
+                Row.AddRow(false, true, false, true, inverse, jump, Rows);
+                Row.AddRow(false, true, false, true, inverse, jump, Rows);
+                Row.AddRow(false, true, false, null, inverse, jump, Rows);
+                Row.AddRow(false, true, false, null, inverse, jump, Rows);
+                Row.AddRow(false, true, false, true, inverse, jump, Rows);
                 break;
             case 22:
                 Row.AddRow(false, true, false, false, inverse, jump, Rows);
-                Row.AddRow(false, true, false, false, inverse, jump, Rows);
-                Row.AddRow(false, true, false, false, inverse, jump, Rows);
-                Row.AddRow(false, true, false, false, inverse, jump, Rows);
-                Row.AddRow(false, true, false, false, inverse, jump, Rows);
+                Row.AddRow(false, true, true, false, inverse, jump, Rows);
+                Row.AddRow(false, false, true, false, inverse, jump, Rows);
+                Row.AddRow(false, true, false, true, inverse, jump, Rows);
+                Row.AddRow(false, true, false, true, inverse, jump, Rows);
                 break;
             case 23:
-                Row.AddRow(false, true, false, false, inverse, jump, Rows);
-                Row.AddRow(false, true, false, false, inverse, jump, Rows);
-                Row.AddRow(false, true, false, false, inverse, jump, Rows);
-                Row.AddRow(false, true, false, false, inverse, jump, Rows);
-                Row.AddRow(false, true, false, false, inverse, jump, Rows);
+                Row.AddRow(true, false, false, false, inverse, jump, Rows);
+                Row.AddRow(true, true, true, false, inverse, jump, Rows);
+                Row.AddRow(true, false, true, true, inverse, jump, Rows);
+                Row.AddRow(true, false, false, true, inverse, jump, Rows);
+                Row.AddRow(true, false, false, true, inverse, jump, Rows);
+                Row.AddRow(null, false, false, true, inverse, jump, Rows);
+                Row.AddRow(true, false, false, true, inverse, jump, Rows);
+                Row.AddRow(true, false, false, true, inverse, jump, Rows);
+                Row.AddRow(null, false, false, true, inverse, jump, Rows);
+                Row.AddRow(true, true, null, true, inverse, jump, Rows);
+                Row.AddRow(false, false, false, true, inverse, jump, Rows);
+                Row.AddRow(false, false, false, true, inverse, jump, Rows);
+                Row.AddRow(false, false, false, true, inverse, jump, Rows);
                 break;
             case 24:
-                Row.AddRow(false, true, false, false, inverse, jump, Rows);
-                Row.AddRow(false, true, false, false, inverse, jump, Rows);
-                Row.AddRow(false, true, false, false, inverse, jump, Rows);
-                Row.AddRow(false, true, false, false, inverse, jump, Rows);
-                Row.AddRow(false, true, false, false, inverse, jump, Rows);
+                Row.AddRow(true, false, false, null, inverse, jump, Rows);
+                Row.AddRow(true, false, false, false, inverse, jump, Rows);
+                Row.AddRow(true, null, true, true, inverse, jump, Rows);
+                Row.AddRow(false, false, false, true, inverse, jump, Rows);
+                Row.AddRow(false, false, false, true, inverse, jump, Rows);
+                Row.AddRow(false, false, false, true, inverse, jump, Rows);
                 break;
             case 25:
-                Row.AddRow(false, true, false, false, inverse, jump, Rows);
-                Row.AddRow(false, true, false, false, inverse, jump, Rows);
-                Row.AddRow(false, true, false, false, inverse, jump, Rows);
-                Row.AddRow(false, true, false, false, inverse, jump, Rows);
-                Row.AddRow(false, true, false, false, inverse, jump, Rows);
+                Row.AddRow(true, false, false, false, inverse, jump, Rows);
+                Row.AddRow(null, false, true, false, inverse, jump, Rows);
+                Row.AddRow(true, false, false, true, inverse, jump, Rows);
+                Row.AddRow(true, false, true, false, inverse, jump, Rows);
+                Row.AddRow(true, false, false, true, inverse, jump, Rows);
                 break;
             case 26:
-                Row.AddRow(false, true, false, false, inverse, jump, Rows);
-                Row.AddRow(false, true, false, false, inverse, jump, Rows);
-                Row.AddRow(false, true, false, false, inverse, jump, Rows);
-                Row.AddRow(false, true, false, false, inverse, jump, Rows);
-                Row.AddRow(false, true, false, false, inverse, jump, Rows);
+                Row.AddRow(false, false, true, false, inverse, jump, Rows);
+                Row.AddRow(true, true, true, false, inverse, jump, Rows);
+                Row.AddRow(true, true, true, true, inverse, jump, Rows);
+                Row.AddRow(true, true, true, true, inverse, jump, Rows);
+                Row.AddRow(true, false, false, true, inverse, jump, Rows);
+                Row.AddRow(true, false, false, true, inverse, jump, Rows);
+                Row.AddRow(true, false, true, false, inverse, jump, Rows);
+                Row.AddRow(true, false, true, true, inverse, jump, Rows);
+                Row.AddRow(null, true, false, true, inverse, jump, Rows);
+                Row.AddRow(false, false, true, false, inverse, jump, Rows);
                 break;
             case 27:
-                Row.AddRow(false, true, false, false, inverse, jump, Rows);
-                Row.AddRow(false, true, false, false, inverse, jump, Rows);
-                Row.AddRow(false, true, false, false, inverse, jump, Rows);
-                Row.AddRow(false, true, false, false, inverse, jump, Rows);
-                Row.AddRow(false, true, false, false, inverse, jump, Rows);
+                Row.AddRow(false, false, true, false, inverse, jump, Rows);
+                Row.AddRow(true, false, true, false, inverse, jump, Rows);
+                Row.AddRow(true, false, true, false, inverse, jump, Rows);
+                Row.AddRow(true, false, true, false, inverse, jump, Rows);
+                Row.AddRow(false, false, true, false, inverse, jump, Rows);
+                Row.AddRow(true, false, true, false, inverse, jump, Rows);
+                Row.AddRow(null, null, true, false, inverse, jump, Rows);
+                Row.AddRow(true, false, false, false, inverse, jump, Rows);
+                Row.AddRow(false, false, false, false, inverse, jump, Rows);
+                Row.AddRow(true, false, false, false, inverse, jump, Rows);
+                Row.AddRow(false, false, false, false, inverse, jump, Rows);
                 break;
             case 28:
-                Row.AddRow(false, true, false, false, inverse, jump, Rows);
-                Row.AddRow(false, true, false, false, inverse, jump, Rows);
-                Row.AddRow(false, true, false, false, inverse, jump, Rows);
-                Row.AddRow(false, true, false, false, inverse, jump, Rows);
-                Row.AddRow(false, true, false, false, inverse, jump, Rows);
+                Row.AddRow(false, false, true, false, inverse, jump, Rows);
+                Row.AddRow(false, false, true, false, inverse, jump, Rows);
+                Row.AddRow(false, false, true, false, inverse, jump, Rows);
+                Row.AddRow(false, false, true, false, inverse, jump, Rows);
+                Row.AddRow(false, false, true, false, inverse, jump, Rows);
+                Row.AddRow(false, false, true, false, inverse, jump, Rows);
+                Row.AddRow(false, false, true, false, inverse, jump, Rows);
+                Row.AddRow(false, false, true, false, inverse, jump, Rows);
                 break;
             case 29:
                 Row.AddRow(true, false, false, false, inverse, jump, Rows);
@@ -358,6 +417,8 @@ public class Chunk
                 Row.AddRow(false, false, true, false, inverse, jump, Rows);
                 Row.AddRow(false, false, false, true, inverse, jump, Rows);
                 Row.AddRow(false, false, true, false, inverse, jump, Rows);
+                Row.AddRow(false, true, false, false, inverse, jump, Rows);
+                Row.AddRow(true, false, false, false, inverse, jump, Rows);
                 break;
             default:
                 break;
