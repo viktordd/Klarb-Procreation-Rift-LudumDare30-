@@ -1,6 +1,4 @@
 ﻿using System;
-using UnityEngine;
-using System.Collections;
 using System.Collections.Generic;
 
 public class ChunkManager
@@ -41,11 +39,21 @@ public class ChunkManager
                 Chunk connectorLeft = new Chunk(currentLevel.LeftChunks[currentLevel.LeftChunks.Count - 1].GetLastRow(), randoChunkLeft.Rows[0]);
                 currentLevel.LeftChunks.Add(connectorLeft);
             }
+            else
+            {
+				Chunk connectorLeft = new Chunk(0, true, true);
+				currentLevel.LeftChunks.Add(connectorLeft);
+            }
 
             if (currentLevel.RightChunks.Count > 0)
             {
                 Chunk connectorRight = new Chunk(currentLevel.RightChunks[currentLevel.RightChunks.Count - 1].GetLastRow(), randoChunkRight.Rows[0]);
                 currentLevel.RightChunks.Add(connectorRight);
+            }
+            else
+            {
+				Chunk connectorRight = new Chunk(0, true, true);
+				currentLevel.RightChunks.Add(connectorRight);
             }
             currentLevel.LeftChunks.Add(randoChunkLeft);
             currentLevel.RightChunks.Add(randoChunkRight);

@@ -1,12 +1,8 @@
-﻿using System;
-using UnityEngine;
-using System.Collections;
-using System.Collections.Generic;
-using Random = UnityEngine.Random;
+﻿using UnityEngine;
 
 public class LevelGenerator : MonoBehaviour
 {
-    public int LevelOfStage;
+    public int LevelOfStage = 1;
     public int SizeOfStage;
     public ChunkManager ChunkManager;
     private Level level;
@@ -28,7 +24,8 @@ public class LevelGenerator : MonoBehaviour
 	}
 
     void GenerateLevel()
-    {
+	{
+		float crumbleSpeed = GetCrumbleSpeed();
         int heighestLeftChunk = 0;
         int heighestRightChunk = 0;
         Vector3 position = new Vector3();
@@ -39,23 +36,23 @@ public class LevelGenerator : MonoBehaviour
             {
                 if (row.FarLeft)
                 {
-                    position = new Vector3(-5.0f, heighestLeftChunk);
-                    Instantiate(leftTile, position, Quaternion.AngleAxis(0, Vector3.forward));
+					position = new Vector3(-5.0f, heighestLeftChunk);
+					InstantiateTile(leftTile, position, crumbleSpeed);
                 }
-                if (row.MidLeft)
+	            if (row.MidLeft)
                 {
-                    position = new Vector3(-4.0f, heighestLeftChunk);
-                    Instantiate(leftTile, position, Quaternion.AngleAxis(0, Vector3.forward));
+					position = new Vector3(-4.0f, heighestLeftChunk);
+					InstantiateTile(leftTile, position, crumbleSpeed);
                 }
                 if (row.MidRight)
                 {
-                    position = new Vector3(-3.0f, heighestLeftChunk);
-                    Instantiate(leftTile, position, Quaternion.AngleAxis(0, Vector3.forward));
+					position = new Vector3(-3.0f, heighestLeftChunk);
+					InstantiateTile(leftTile, position, crumbleSpeed);
                 }
                 if (row.FarRight)
                 {
-                    position = new Vector3(-2.0f, heighestLeftChunk);
-                    Instantiate(leftTile, position, Quaternion.AngleAxis(0, Vector3.forward));
+					position = new Vector3(-2.0f, heighestLeftChunk);
+					InstantiateTile(leftTile, position, crumbleSpeed);
                 }
                 heighestLeftChunk++;
             }
@@ -66,26 +63,63 @@ public class LevelGenerator : MonoBehaviour
             {
                 if (row.FarLeft)
                 {
-                    position = new Vector3(2.0f, heighestRightChunk);
-                    Instantiate(rightTile, position, Quaternion.AngleAxis(0, Vector3.forward));
+					position = new Vector3(2.0f, heighestRightChunk);
+					InstantiateTile(rightTile, position, crumbleSpeed);
                 }
                 if (row.MidLeft)
                 {
-                    position = new Vector3(3.0f, heighestRightChunk);
-                    Instantiate(rightTile, position, Quaternion.AngleAxis(0, Vector3.forward));
+					position = new Vector3(3.0f, heighestRightChunk);
+					InstantiateTile(rightTile, position, crumbleSpeed);
                 }
                 if (row.MidRight)
                 {
-                    position = new Vector3(4.0f, heighestRightChunk);
-                    Instantiate(rightTile, position, Quaternion.AngleAxis(0, Vector3.forward));
+					position = new Vector3(4.0f, heighestRightChunk);
+					InstantiateTile(rightTile, position, crumbleSpeed);
                 }
                 if (row.FarRight)
                 {
-                    position = new Vector3(5.0f, heighestRightChunk);
-                    Instantiate(rightTile, position, Quaternion.AngleAxis(0, Vector3.forward));
+					position = new Vector3(5.0f, heighestRightChunk);
+					InstantiateTile(rightTile, position, crumbleSpeed);
                 }
                 heighestRightChunk++;
             }
         }
     }
+
+	private float GetCrumbleSpeed()
+	{
+		switch (LevelOfStage)
+		{
+			case 1:
+			case 2:
+				return 0f;
+				break;
+			case 3:
+			case 4:
+				return 1f;
+				break;
+			case 5:
+			case 6:
+				return 2f;
+				break;
+			case 7:
+			case 8:
+				return 3f;
+				break;
+			case 9:
+			case 10:
+				return 4f;
+				break;
+			default:
+				return 5f;
+				break;
+		}
+	}
+
+	private void InstantiateTile(GameObject tile, Vector3 position, float crumbleSpeed)
+	{
+		var obj = Instantiate(tile, position, Quaternion.AngleAxis(0, Vector3.forward)) as GameObject;
+		var controller = obj.GetComponent<TileController>();
+		controller.crumbleSpeed = crumbleSpeed;
+	}
 }
