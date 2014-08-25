@@ -17,7 +17,7 @@ public class ResetLevel : MonoBehaviour {
 			Application.LoadLevel(Application.loadedLevelName);
 		}
 
-        if (PlayerLeftDead && PlayerRightDead)
+        if (PlayerLeftDead || PlayerRightDead)
         {
             Application.LoadLevel("GameOverScene");
         }

@@ -4,16 +4,20 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-	private float moveSpeed = 3f;
+	private const int jumpSFXindx = 0;
+	private const int fallSFXindx = 1;
+	private const float moveSpeed = 3f;
+
 
     public string player;
     private string horizontal = string.Empty;
     private string vertical = string.Empty;
 	private string jump = string.Empty;
-
+	
 	public bool Jumping { get { return jumping; } }
-	private bool grounded = true;
+	private bool hasGroundBelow = true;
 	private bool jumping = false;
+	private bool endJump = false;
 	private bool dead = false;
 
     public ResetLevel levelReset;    
@@ -43,19 +47,19 @@ public class PlayerController : MonoBehaviour
 	// Update is called once per frame
 	void FixedUpdate ()
 	{
-		if (!dead)
-		{
+		if (dead)
+			SetPlayerAsDead();
+		else
 			PlayerInput();
-		}
-        
 	}
 
 	void PlayerInput()
 	{
-		grounded = Physics2D.OverlapCircle(groundCheck.position, groundRadius, whatIsGround);
+		hasGroundBelow = Physics2D.OverlapCircle(groundCheck.position, groundRadius, whatIsGround);
 		float hAxis = Input.GetAxis(horizontal);
 		float vAxis = Input.GetAxis(vertical);
-		bool jumpTrig = Input.GetButtonDown(jump);
+		bool jumpTrig = Input.GetButton(jump) && !endJump;
+		if (endJump) endJump = false;
 
 		Vector2 move = new Vector2(hAxis*moveSpeed, vAxis*moveSpeed);
 		move = Vector2.ClampMagnitude(move, moveSpeed);
@@ -67,27 +71,28 @@ public class PlayerController : MonoBehaviour
 			transform.rotation = Quaternion.AngleAxis(angle - 90, Vector3.forward);
 		}
 
-		if (jumpTrig && grounded && !dead)
+		if (jumpTrig && !jumping && hasGroundBelow)
 		{
 			jumping = true;
 			anim.SetBool("Jump", true);
-			audio[0].Play();
+			audio[jumpSFXindx].Play();
 		}
 
-		if (!jumping && !grounded)
+		if (!jumping && !hasGroundBelow)
 		{
 			StartFallSequence(move);
 			return;
 		}
-		rigidbody2D.velocity = dead ? Vector2.ClampMagnitude(move, moveSpeed/3f) : move;
+		rigidbody2D.velocity = move;
 	}
 
 	// Called from at the end of Jump of animation.
 	public void EndJump()
 	{
+		endJump = true;
 		jumping = false;
 		anim.SetBool("Jump", false);
-		if (!grounded)
+		if (!hasGroundBelow)
 		{
 			StartFallSequence(rigidbody2D.velocity);
 		}
@@ -97,7 +102,7 @@ public class PlayerController : MonoBehaviour
 	{
 		dead = true;
 		anim.SetBool("Fall", true);
-		audio[0].Play();
+		audio[fallSFXindx].Play();
 		Destroy(collider2D);
 		spriteRenderer.sortingLayerName = "Falling Player";
 		rigidbody2D.velocity = Vector2.ClampMagnitude(move, moveSpeed/3f);
@@ -106,12 +111,18 @@ public class PlayerController : MonoBehaviour
 	// Called from at the end of Jump of animation.
 	public void EndFall()
 	{
-		Destroy(gameObject);
-	    if (levelReset.PlayerLeftDead == false)
+		Destroy(spriteRenderer);
+	}
+
+	public void SetPlayerAsDead()
+	{
+		if (audio[fallSFXindx].isPlaying)
+			return;
+		if (player == "Left")
 	    {
 	        levelReset.PlayerLeftDead = true;
 	    }
-	    else if (levelReset.PlayerRightDead == false)
+		else if (player == "Right")
 	    {
 	        levelReset.PlayerRightDead = true;
 	    }
