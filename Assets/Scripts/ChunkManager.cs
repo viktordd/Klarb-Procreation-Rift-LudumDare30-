@@ -33,7 +33,8 @@ public class ChunkManager
             int difficulty = random.Next(1, 3 + levelOfStage * 3) % 30;
             bool jump = levelOfStage <= 3 ? false : levelOfStage <= 5 ? random.Next(0, 5) == 4 : random.Next(0, 2) == 1;
             bool inverse = random.Next(0, 2) == 1;
-            Chunk randoChunkLeft = new Chunk(difficulty, false, jump);
+            bool insainMode = levelOfStage < 7 ? false : random.Next(0, 3) == 2;
+            Chunk randoChunkLeft = new Chunk(insainMode && difficulty != 29 ? difficulty + 1 : difficulty, false, jump);
             Chunk randoChunkRight = new Chunk(difficulty, inverse, jump);//Only inverse one side
             if (currentLevel.LeftChunks.Count > 0)
             {
@@ -62,6 +63,19 @@ public class ChunkManager
             currentLevel.RightChunks.Add(randoChunkRight);
             if (offsetChunk)
                 currentLevel.RightChunks.Add(new Chunk(0, true, true));
+            int i = 0;
+            while (randoChunkLeft.Rows.Count > randoChunkRight.Rows.Count + i)
+            {
+                currentLevel.RightChunks.Add(new Chunk(0, true, true));
+                i++;
+            }
+            i = 0;
+            while (randoChunkLeft.Rows.Count + i < randoChunkRight.Rows.Count)
+            {
+                currentLevel.LeftChunks.Add(new Chunk(0, true, true));
+                i++;
+            }
+
             numOfChunks--;
         }
         return currentLevel;
