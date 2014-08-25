@@ -59,6 +59,7 @@ public class PlayerController : MonoBehaviour
 		bool jumpTrig = Input.GetButtonDown(jump);
 
 		Vector2 move = new Vector2(hAxis*moveSpeed, vAxis*moveSpeed);
+		move = Vector2.ClampMagnitude(move, moveSpeed);
 		anim.SetFloat("Speed", move.magnitude);
 
 		if (Input.GetButton(horizontal) || Input.GetButton(vertical))
@@ -78,7 +79,7 @@ public class PlayerController : MonoBehaviour
 		{
 			dead = true;
 			anim.SetBool("Fall", true);
-			audio[1].Play();
+			audio[0].Play();
 		}
 		rigidbody2D.velocity = dead ? Vector2.zero : move;
 	}

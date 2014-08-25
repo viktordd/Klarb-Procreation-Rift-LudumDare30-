@@ -1,14 +1,18 @@
 fileFormatVersion: 2
-guid: 9ec2badca080f9641b62d9dca9f22c84
+guid: ab57da4b02a039c40a31164dc9b4544c
 TextureImporter:
   fileIDToRecycleName:
-    21300000: AlienWalk1_spritesheet
-    21300002: AlienWalk1_spritesheet_0
-    21300004: AlienWalk1_spritesheet_1
-    21300006: AlienWalk1_spritesheet_2
-    21300008: AlienWalk1_spritesheet_3
-    21300010: AlienWalk1_spritesheet_4
-    21300012: AlienWalk1_spritesheet_5
+    21300000: AlienWalk1
+    21300002: AlienWalk1_0
+    21300004: AlienWalk1_1
+    21300006: AlienWalk1_2
+    21300008: AlienWalk1_3
+    21300010: AlienWalk1_4
+    21300012: AlienWalk1_5
+    21300014: AlienWalk1_6
+    21300016: AlienWalk1_7
+    21300018: AlienWalk1_8
+    21300020: AlienWalk1_9
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -50,63 +54,103 @@ TextureImporter:
   buildTargetSettings: []
   spriteSheet:
     sprites:
-    - name: AlienWalk1_spritesheet_0
+    - name: AlienWalk1_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
         width: 64
-        height: 60
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: AlienWalk1_spritesheet_1
+    - name: AlienWalk1_1
       rect:
         serializedVersion: 2
         x: 64
         y: 0
         width: 64
-        height: 60
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: AlienWalk1_spritesheet_2
+    - name: AlienWalk1_2
       rect:
         serializedVersion: 2
         x: 128
         y: 0
         width: 64
-        height: 60
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: AlienWalk1_spritesheet_3
+    - name: AlienWalk1_3
       rect:
         serializedVersion: 2
         x: 192
         y: 0
         width: 64
-        height: 60
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: AlienWalk1_spritesheet_4
+    - name: AlienWalk1_4
       rect:
         serializedVersion: 2
         x: 256
         y: 0
         width: 64
-        height: 60
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: AlienWalk1_spritesheet_5
+    - name: AlienWalk1_5
       rect:
         serializedVersion: 2
         x: 320
         y: 0
         width: 64
-        height: 60
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: AlienWalk1_6
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 0
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: AlienWalk1_7
+      rect:
+        serializedVersion: 2
+        x: 448
+        y: 0
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: AlienWalk1_8
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 0
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: AlienWalk1_9
+      rect:
+        serializedVersion: 2
+        x: 576
+        y: 0
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
