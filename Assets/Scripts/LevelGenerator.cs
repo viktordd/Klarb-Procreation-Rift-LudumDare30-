@@ -93,26 +93,20 @@ public class LevelGenerator : MonoBehaviour
 			case 1:
 			case 2:
 				return 0f;
-				break;
 			case 3:
 			case 4:
 				return 1f;
-				break;
 			case 5:
 			case 6:
 				return 2f;
-				break;
 			case 7:
 			case 8:
 				return 3f;
-				break;
 			case 9:
 			case 10:
 				return 4f;
-				break;
 			default:
 				return 5f;
-				break;
 		}
 	}
 

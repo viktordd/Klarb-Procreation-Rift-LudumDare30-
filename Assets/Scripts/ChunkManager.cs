@@ -29,6 +29,7 @@ public class ChunkManager
         int numOfChunks = levelOfStage * 2 + 6;
         while (numOfChunks > 0)
         {
+            bool offsetChunk = levelOfStage < 2 ? false : (random.Next(0, 5) == 4);
             int difficulty = random.Next(1, 3 + levelOfStage * 3) % 30;
             bool jump = levelOfStage <= 3 ? false : levelOfStage <= 5 ? random.Next(0, 5) == 4 : random.Next(0, 2) == 1;
             bool inverse = random.Next(0, 2) == 1;
@@ -55,8 +56,12 @@ public class ChunkManager
 				Chunk connectorRight = new Chunk(0, true, true);
 				currentLevel.RightChunks.Add(connectorRight);
             }
+            if (offsetChunk)
+                currentLevel.LeftChunks.Add(new Chunk(0, true, true));
             currentLevel.LeftChunks.Add(randoChunkLeft);
             currentLevel.RightChunks.Add(randoChunkRight);
+            if (offsetChunk)
+                currentLevel.RightChunks.Add(new Chunk(0, true, true));
             numOfChunks--;
         }
         return currentLevel;
