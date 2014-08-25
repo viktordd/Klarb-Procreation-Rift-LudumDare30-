@@ -20,10 +20,19 @@ public class ResetLevel : MonoBehaviour {
         if (PlayerLeftDead || PlayerRightDead)
         {
             Application.LoadLevel("GameOverScene");
-        }
+		}
+
+		if (PlayerLeftAtEnd && PlayerRightAtEnd)
+		{
+			Application.LoadLevel("ProcreationScene");
+		}
 	}
 
+	public bool PlayerLeftAtEnd { get; set; }
+	public bool PlayerRightAtEnd { get; set; }
+
+
+	public bool PlayerLeftDead { get; set; }
     public bool PlayerRightDead { get; set; }
 
-    public bool PlayerLeftDead { get; set; }
 }

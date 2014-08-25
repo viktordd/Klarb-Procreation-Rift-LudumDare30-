@@ -16,6 +16,7 @@ public class PlayerController : MonoBehaviour
 	
 	public bool Jumping { get { return jumping; } }
 	private bool hasGroundBelow = true;
+	private bool isAtEnd = false;
 	private bool jumping = false;
 	private bool endJump = false;
 	private bool dead = false;
@@ -25,6 +26,7 @@ public class PlayerController : MonoBehaviour
     public Transform groundCheck;
 	private float groundRadius = 0.15f;
 	public LayerMask whatIsGround;
+	public LayerMask whatIsEnd;
 
 	private Animator anim;
 	private AudioSource[] audio;
@@ -83,6 +85,13 @@ public class PlayerController : MonoBehaviour
 			StartFallSequence(move);
 			return;
 		}
+		if (!isAtEnd)
+		{
+			isAtEnd = Physics2D.OverlapCircle(groundCheck.position, groundRadius, whatIsEnd);
+			if (isAtEnd)
+				SetPlayerAtEnd();
+		}
+
 		rigidbody2D.velocity = move;
 	}
 
@@ -126,5 +135,17 @@ public class PlayerController : MonoBehaviour
 	    {
 	        levelReset.PlayerRightDead = true;
 	    }
+	}
+
+	public void SetPlayerAtEnd()
+	{
+		if (player == "Left")
+		{
+			levelReset.PlayerLeftAtEnd = true;
+		}
+		else if (player == "Right")
+		{
+			levelReset.PlayerRightAtEnd = true;
+		}
 	}
 }
