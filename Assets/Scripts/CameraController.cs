@@ -7,6 +7,7 @@ public class CameraController : MonoBehaviour
     public Transform PlayerLeft;
     public Transform PlayerRight;
 
+
 	// Use this for initialization
 	void Start () {	    
 	}

@@ -16,7 +16,9 @@ public class PlayerController : MonoBehaviour
 	private bool jumping = false;
 	private bool dead = false;
 
-	public Transform groundCheck;
+    public ResetLevel levelReset;    
+
+    public Transform groundCheck;
 	private float groundRadius = 0.15f;
 	public LayerMask whatIsGround;
 
@@ -45,6 +47,7 @@ public class PlayerController : MonoBehaviour
 		{
 			PlayerInput();
 		}
+        
 	}
 
 	void PlayerInput()
@@ -104,5 +107,13 @@ public class PlayerController : MonoBehaviour
 	public void EndFall()
 	{
 		Destroy(gameObject);
+	    if (levelReset.PlayerLeftDead == false)
+	    {
+	        levelReset.PlayerLeftDead = true;
+	    }
+	    else if (levelReset.PlayerRightDead == false)
+	    {
+	        levelReset.PlayerRightDead = true;
+	    }
 	}
 }

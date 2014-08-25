@@ -3,6 +3,7 @@ using System.Collections;
 
 public class ResetLevel : MonoBehaviour {
 
+
 	// Use this for initialization
 	void Start () {
 	
@@ -15,5 +16,14 @@ public class ResetLevel : MonoBehaviour {
 		{
 			Application.LoadLevel(Application.loadedLevelName);
 		}
+
+        if (PlayerLeftDead && PlayerRightDead)
+        {
+            Application.LoadLevel("GameOverScene");
+        }
 	}
+
+    public bool PlayerRightDead { get; set; }
+
+    public bool PlayerLeftDead { get; set; }
 }
