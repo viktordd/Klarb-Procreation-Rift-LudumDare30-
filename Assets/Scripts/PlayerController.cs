@@ -17,7 +17,7 @@ public class PlayerController : MonoBehaviour
 	private bool dead = false;
 
 	public Transform groundCheck;
-	private float groundRadius = 0.01f;
+	private float groundRadius = 0.15f;
 	public LayerMask whatIsGround;
 
 	private Animator anim;
