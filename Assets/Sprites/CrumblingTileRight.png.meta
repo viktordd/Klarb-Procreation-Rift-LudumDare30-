@@ -1,10 +1,12 @@
 fileFormatVersion: 2
-guid: 33c33d6391020114c89d2779a092795c
+guid: 82cf40fa0c1fcea4faf3722c217685cb
 TextureImporter:
   fileIDToRecycleName:
-    21300000: TileFallingLeft
-    21300002: TileFallingLeft_0
-    21300004: TileFallingLeft_1
+    21300000: CrumblingTileRight
+    21300002: CrumblingTileRight_0
+    21300004: CrumblingTileRight_1
+    21300006: CrumblingTileRight_2
+    21300008: CrumblingTileRight_3
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -46,7 +48,7 @@ TextureImporter:
   buildTargetSettings: []
   spriteSheet:
     sprites:
-    - name: TileFallingLeft_0
+    - name: CrumblingTileRight_0
       rect:
         serializedVersion: 2
         x: 0
@@ -56,10 +58,30 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: TileFallingLeft_1
+    - name: CrumblingTileRight_1
       rect:
         serializedVersion: 2
         x: 100
+        y: 0
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: CrumblingTileRight_2
+      rect:
+        serializedVersion: 2
+        x: 200
+        y: 0
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: CrumblingTileRight_3
+      rect:
+        serializedVersion: 2
+        x: 300
         y: 0
         width: 100
         height: 100
