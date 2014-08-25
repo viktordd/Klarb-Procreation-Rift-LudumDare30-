@@ -85,12 +85,9 @@ public class PlayerController : MonoBehaviour
 			StartFallSequence(move);
 			return;
 		}
-		if (!isAtEnd)
-		{
-			isAtEnd = Physics2D.OverlapCircle(groundCheck.position, groundRadius, whatIsEnd);
-			if (isAtEnd)
-				SetPlayerAtEnd();
-		}
+		isAtEnd = Physics2D.OverlapCircle(groundCheck.position, groundRadius, whatIsEnd);
+		if (isAtEnd)
+			SetPlayerAtEnd();
 
 		rigidbody2D.velocity = move;
 	}
