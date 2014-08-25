@@ -13,6 +13,8 @@ public class CameraController : MonoBehaviour
 	
 	// Update is called once per frame
 	void Update () {
+		if (PlayerLeft == null || PlayerRight == null)
+			return;
         if(PlayerLeft.position.y > PlayerRight.position.y)
             transform.position = new Vector3(0, ((PlayerLeft.position.y - PlayerRight.position.y) / 2) + PlayerRight.position.y, -10);
         if (PlayerRight.position.y > PlayerLeft.position.y)

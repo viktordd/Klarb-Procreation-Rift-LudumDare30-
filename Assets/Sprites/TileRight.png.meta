@@ -1,8 +1,9 @@
 fileFormatVersion: 2
-guid: 6912e60a4a5afdb429940a6fefd21f65
+guid: 7762de8783d6df74b822b20e3edf99b8
 TextureImporter:
   fileIDToRecycleName:
-    21300000: TileRight
+    21300000: TileRight 1
+    21300002: TileRight
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -26,9 +27,9 @@ TextureImporter:
   maxTextureSize: 1024
   textureSettings:
     filterMode: -1
-    aniso: -1
+    aniso: 1
     mipBias: -1
-    wrapMode: -1
+    wrapMode: 1
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50

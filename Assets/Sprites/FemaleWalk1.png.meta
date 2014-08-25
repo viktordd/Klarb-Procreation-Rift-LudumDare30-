@@ -3,6 +3,12 @@ guid: 906e0249ba234c6418a7cb7750ca7b35
 TextureImporter:
   fileIDToRecycleName:
     21300000: FemaleWalk1
+    21300002: FemaleWalk1_0
+    21300004: FemaleWalk1_1
+    21300006: FemaleWalk1_2
+    21300008: FemaleWalk1_3
+    21300010: FemaleWalk1_4
+    21300012: FemaleWalk1_5
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -26,13 +32,13 @@ TextureImporter:
   maxTextureSize: 1024
   textureSettings:
     filterMode: -1
-    aniso: -1
+    aniso: 1
     mipBias: -1
-    wrapMode: -1
+    wrapMode: 1
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -43,6 +49,66 @@ TextureImporter:
   textureType: 8
   buildTargetSettings: []
   spriteSheet:
-    sprites: []
+    sprites:
+    - name: FemaleWalk1_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1
+        width: 52
+        height: 51
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: FemaleWalk1_1
+      rect:
+        serializedVersion: 2
+        x: 56
+        y: 0
+        width: 60
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: FemaleWalk1_2
+      rect:
+        serializedVersion: 2
+        x: 119
+        y: 0
+        width: 61
+        height: 60
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: FemaleWalk1_3
+      rect:
+        serializedVersion: 2
+        x: 182
+        y: 0
+        width: 54
+        height: 52
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: FemaleWalk1_4
+      rect:
+        serializedVersion: 2
+        x: 243
+        y: 0
+        width: 59
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: FemaleWalk1_5
+      rect:
+        serializedVersion: 2
+        x: 304
+        y: 0
+        width: 60
+        height: 61
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
   spritePackingTag: 
   userData: 

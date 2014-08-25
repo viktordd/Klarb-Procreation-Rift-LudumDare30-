@@ -10,7 +10,6 @@ public class PlayerController : MonoBehaviour
     private string horizontal = string.Empty;
     private string vertical = string.Empty;
 	private string jump = string.Empty;
-	private string reset = string.Empty;
 
 	public bool Jumping { get { return jumping; } }
 	private bool grounded = true;
@@ -23,28 +22,25 @@ public class PlayerController : MonoBehaviour
 
 	private Animator anim;
 	private AudioSource[] audio;
+	private SpriteRenderer spriteRenderer;
 
 	// Use this for initialization
 	void Start ()
 	{
 		anim = GetComponent<Animator>();
 		audio = GetComponents<AudioSource>();
+		spriteRenderer = GetComponent<SpriteRenderer>();
 
 		SwitchHelper.Switch(anim, player);
 
 		horizontal = "Horizontal" + player;
 	    vertical = "Vertical" + player;
 		jump = "Jump" + player;
-		reset = "Reset" + player;
 	}
 
 	// Update is called once per frame
 	void FixedUpdate ()
 	{
-		if (Input.GetButton(reset))
-		{
-			Application.LoadLevel(Application.loadedLevelName);
-		}
 		if (!dead)
 		{
 			PlayerInput();
@@ -77,11 +73,10 @@ public class PlayerController : MonoBehaviour
 
 		if (!jumping && !grounded)
 		{
-			dead = true;
-			anim.SetBool("Fall", true);
-			audio[0].Play();
+			StartFallSequence(move);
+			return;
 		}
-		rigidbody2D.velocity = dead ? Vector2.zero : move;
+		rigidbody2D.velocity = dead ? Vector2.ClampMagnitude(move, moveSpeed/3f) : move;
 	}
 
 	// Called from at the end of Jump of animation.
@@ -91,9 +86,23 @@ public class PlayerController : MonoBehaviour
 		anim.SetBool("Jump", false);
 		if (!grounded)
 		{
-			dead = true;
-			anim.SetBool("Fall", true);
-			rigidbody2D.velocity = Vector2.zero;
+			StartFallSequence(rigidbody2D.velocity);
 		}
+	}
+
+	private void StartFallSequence(Vector2 move)
+	{
+		dead = true;
+		anim.SetBool("Fall", true);
+		audio[0].Play();
+		Destroy(collider2D);
+		spriteRenderer.sortingLayerName = "Falling Player";
+		rigidbody2D.velocity = Vector2.ClampMagnitude(move, moveSpeed/3f);
+	}
+
+	// Called from at the end of Jump of animation.
+	public void EndFall()
+	{
+		Destroy(gameObject);
 	}
 }

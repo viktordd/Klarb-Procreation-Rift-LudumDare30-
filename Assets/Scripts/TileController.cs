@@ -9,13 +9,15 @@ public class TileController : MonoBehaviour
 	public float crumbleSpeed = 0f;
 
 	private Animator anim;
-	private bool falling = false;
+	private SpriteRenderer spriteRenderer;
+	private bool crumbling = false;
 	private PlayerController player;
 
 	// Use this for initialization
 	void Start()
 	{
 		anim = GetComponent<Animator>();
+		spriteRenderer = GetComponent<SpriteRenderer>();
 		SwitchHelper.Switch(anim, Tile);
 	}
 
@@ -23,7 +25,7 @@ public class TileController : MonoBehaviour
 	void Update()
 	{
 		anim.SetFloat("CrumbleSpeed", crumbleSpeed);
-		if (!falling && player != null && !player.Jumping)
+		if (!crumbling && player != null && !player.Jumping)
 		{
 			StartCrumbling();
 		}
@@ -45,7 +47,7 @@ public class TileController : MonoBehaviour
 
 	void OnTriggerExit2D(Collider2D otherObject)
 	{
-		if (!falling && otherObject.CompareTag("Player"))
+		if (!crumbling && otherObject.CompareTag("Player"))
 		{
 			player = null;
 		}
@@ -53,12 +55,13 @@ public class TileController : MonoBehaviour
 
 	private void StartCrumbling()
 	{
-		falling = true;
+		crumbling = true;
 		anim.SetBool("Crumbling", true);
 	}
 
 	public void StartFalling()
 	{
+		spriteRenderer.sortingLayerName = "Falling Tile";
 		Destroy(collider2D);
 	}
 

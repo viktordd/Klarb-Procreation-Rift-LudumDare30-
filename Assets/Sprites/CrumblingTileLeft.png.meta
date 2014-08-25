@@ -1,13 +1,12 @@
 fileFormatVersion: 2
-guid: a70e6c9570c3ce649a87408f98826d51
+guid: dfa6cba245e3c834fa8f2090298616b5
 TextureImporter:
   fileIDToRecycleName:
-    21300000: AlienFall1
-    21300002: AlienFall1_0
-    21300004: AlienFall1_1
-    21300006: AlienFall1_2
-    21300008: AlienFall1_3
-    21300010: AlienFall1_4
+    21300000: CrumblingTileLeft
+    21300002: CrumblingTileLeft_0
+    21300004: CrumblingTileLeft_1
+    21300006: CrumblingTileLeft_2
+    21300008: CrumblingTileLeft_3
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -43,59 +42,49 @@ TextureImporter:
   alignment: 0
   spritePivot: {x: .5, y: .5}
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
-  spritePixelsToUnits: 190
+  spritePixelsToUnits: 100
   alphaIsTransparency: 1
   textureType: 8
   buildTargetSettings: []
   spriteSheet:
     sprites:
-    - name: AlienFall1_0
+    - name: CrumblingTileLeft_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 98
-        height: 122
-      alignment: 0
-      pivot: {x: .5, y: .5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-    - name: AlienFall1_1
-      rect:
-        serializedVersion: 2
-        x: 143
-        y: 6
-        width: 102
-        height: 105
-      alignment: 0
-      pivot: {x: .5, y: .5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-    - name: AlienFall1_2
-      rect:
-        serializedVersion: 2
-        x: 293
-        y: 12
-        width: 85
-        height: 90
+        width: 100
+        height: 100
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: AlienFall1_3
+    - name: CrumblingTileLeft_1
       rect:
         serializedVersion: 2
-        x: 441
-        y: 19
-        width: 65
-        height: 77
+        x: 100
+        y: 0
+        width: 100
+        height: 100
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: AlienFall1_4
+    - name: CrumblingTileLeft_2
       rect:
         serializedVersion: 2
-        x: 599
-        y: 34
-        width: 41
-        height: 55
+        x: 200
+        y: 0
+        width: 100
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: CrumblingTileLeft_3
+      rect:
+        serializedVersion: 2
+        x: 300
+        y: 0
+        width: 100
+        height: 100
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
