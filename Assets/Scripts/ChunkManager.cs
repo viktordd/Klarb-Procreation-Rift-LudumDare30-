@@ -29,7 +29,7 @@ public class ChunkManager
         int numOfChunks = levelOfStage * 2 + 6;
         while (numOfChunks > 0)
         {
-            bool offsetChunk = levelOfStage < 2 ? false : (random.Next(0, 5) == 4);
+            bool offsetChunk = levelOfStage < 2 ? false : (random.Next(0, 4) == 3);
             int difficulty = random.Next(1, 3 + levelOfStage * 3) % 30;
             bool jump = levelOfStage <= 3 ? false : levelOfStage <= 5 ? random.Next(0, 5) == 4 : random.Next(0, 2) == 1;
             bool inverse = random.Next(0, 2) == 1;
