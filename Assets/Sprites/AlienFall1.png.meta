@@ -1,15 +1,13 @@
 fileFormatVersion: 2
-guid: 909564a77d277c4439ba2868c3a2cd57
+guid: a70e6c9570c3ce649a87408f98826d51
 TextureImporter:
   fileIDToRecycleName:
-    21300000: AlienWalk2
-    21300002: AlienWalk1
-    21300004: AlienWalk1_0
-    21300006: AlienWalk1_1
-    21300008: AlienWalk1_2
-    21300010: AlienWalk1_3
-    21300012: AlienWalk1_4
-    21300014: AlienWalk1_5
+    21300000: AlienFall1
+    21300002: AlienFall1_0
+    21300004: AlienFall1_1
+    21300006: AlienFall1_2
+    21300008: AlienFall1_3
+    21300010: AlienFall1_4
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -51,63 +49,53 @@ TextureImporter:
   buildTargetSettings: []
   spriteSheet:
     sprites:
-    - name: AlienWalk1_0
+    - name: AlienFall1_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 48
-        height: 50
+        width: 98
+        height: 122
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: AlienFall1_1
+      rect:
+        serializedVersion: 2
+        x: 143
+        y: 6
+        width: 102
+        height: 105
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: AlienFall1_2
+      rect:
+        serializedVersion: 2
+        x: 293
+        y: 12
+        width: 85
+        height: 90
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: AlienWalk1_1
+    - name: AlienFall1_3
       rect:
         serializedVersion: 2
-        x: 59
-        y: 3
-        width: 57
-        height: 61
+        x: 441
+        y: 19
+        width: 65
+        height: 77
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: AlienWalk1_2
+    - name: AlienFall1_4
       rect:
         serializedVersion: 2
-        x: 119
-        y: 0
-        width: 63
-        height: 61
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-    - name: AlienWalk1_3
-      rect:
-        serializedVersion: 2
-        x: 188
-        y: 0
-        width: 49
-        height: 50
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-    - name: AlienWalk1_4
-      rect:
-        serializedVersion: 2
-        x: 249
-        y: 0
-        width: 57
-        height: 62
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-    - name: AlienWalk1_5
-      rect:
-        serializedVersion: 2
-        x: 308
-        y: 0
-        width: 62
-        height: 61
+        x: 599
+        y: 34
+        width: 41
+        height: 55
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}

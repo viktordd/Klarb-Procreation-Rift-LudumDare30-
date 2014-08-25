@@ -1,15 +1,12 @@
 fileFormatVersion: 2
-guid: 909564a77d277c4439ba2868c3a2cd57
+guid: e0c8552e29e345f4da3119896b552958
 TextureImporter:
   fileIDToRecycleName:
-    21300000: AlienWalk2
-    21300002: AlienWalk1
-    21300004: AlienWalk1_0
-    21300006: AlienWalk1_1
-    21300008: AlienWalk1_2
-    21300010: AlienWalk1_3
-    21300012: AlienWalk1_4
-    21300014: AlienWalk1_5
+    21300000: AlienJump1
+    21300002: AlienJump1_0
+    21300004: AlienJump1_1
+    21300006: AlienJump1_2
+    21300008: AlienJump1_3
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -51,63 +48,43 @@ TextureImporter:
   buildTargetSettings: []
   spriteSheet:
     sprites:
-    - name: AlienWalk1_0
+    - name: AlienJump1_0
       rect:
         serializedVersion: 2
         x: 0
-        y: 0
-        width: 48
-        height: 50
+        y: 12
+        width: 56
+        height: 60
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: AlienWalk1_1
+    - name: AlienJump1_1
       rect:
         serializedVersion: 2
-        x: 59
-        y: 3
-        width: 57
-        height: 61
+        x: 107
+        y: 7
+        width: 77
+        height: 79
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: AlienWalk1_2
+    - name: AlienJump1_2
       rect:
         serializedVersion: 2
-        x: 119
-        y: 0
-        width: 63
-        height: 61
+        x: 211
+        y: 8
+        width: 88
+        height: 88
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: AlienWalk1_3
+    - name: AlienJump1_3
       rect:
         serializedVersion: 2
-        x: 188
+        x: 323
         y: 0
-        width: 49
-        height: 50
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-    - name: AlienWalk1_4
-      rect:
-        serializedVersion: 2
-        x: 249
-        y: 0
-        width: 57
-        height: 62
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-    - name: AlienWalk1_5
-      rect:
-        serializedVersion: 2
-        x: 308
-        y: 0
-        width: 62
-        height: 61
+        width: 101
+        height: 100
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
