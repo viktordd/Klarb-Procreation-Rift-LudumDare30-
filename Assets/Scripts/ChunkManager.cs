@@ -430,13 +430,13 @@ public class Chunk
                 break;
             case 28:
                 Row.AddRow(false, false, true, false, inverse, jump, Rows);
+                Row.AddRow(false, true, false, false, inverse, jump, Rows);
+                Row.AddRow(true, false, false, false, inverse, jump, Rows);
+                Row.AddRow(false, true, true, false, inverse, jump, Rows);
                 Row.AddRow(false, false, true, false, inverse, jump, Rows);
-                Row.AddRow(false, false, true, false, inverse, jump, Rows);
-                Row.AddRow(false, false, true, false, inverse, jump, Rows);
-                Row.AddRow(false, false, true, false, inverse, jump, Rows);
-                Row.AddRow(false, false, true, false, inverse, jump, Rows);
-                Row.AddRow(false, false, true, false, inverse, jump, Rows);
-                Row.AddRow(false, false, true, false, inverse, jump, Rows);
+                Row.AddRow(true, true, false, false, inverse, jump, Rows);
+                Row.AddRow(true, false, true, false, inverse, jump, Rows);
+                Row.AddRow(true, false, true, false, inverse, jump, Rows);
                 break;
             case 29:
                 Row.AddRow(true, false, false, false, inverse, jump, Rows);

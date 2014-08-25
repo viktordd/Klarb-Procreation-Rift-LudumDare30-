@@ -8,6 +8,8 @@ public class LevelGenerator : MonoBehaviour
     private Level level;
     public GameObject leftTile;
     public GameObject rightTile;
+    public GameObject startTile;
+    public GameObject endTile;
     public Chunk[] Chunks;
 	// Use this for initialization
 	void Start ()
@@ -29,7 +31,14 @@ public class LevelGenerator : MonoBehaviour
         int heighestLeftChunk = 0;
         int heighestRightChunk = 0;
         Vector3 position = new Vector3();
-
+        position = new Vector3(-5.0f, heighestLeftChunk - 2);
+        Instantiate(startTile, position, Quaternion.AngleAxis(0, Vector3.forward));
+        position = new Vector3(-5.0f, heighestLeftChunk - 1);
+        Instantiate(startTile, position, Quaternion.AngleAxis(0, Vector3.forward));
+        position = new Vector3(5.0f, heighestLeftChunk - 2);
+        Instantiate(startTile, position, Quaternion.AngleAxis(0, Vector3.forward));
+        position = new Vector3(5.0f, heighestLeftChunk - 1);
+        Instantiate(startTile, position, Quaternion.AngleAxis(0, Vector3.forward));
         foreach (Chunk chunk in level.LeftChunks)
         {
             foreach (Row row in chunk.Rows)
@@ -84,6 +93,29 @@ public class LevelGenerator : MonoBehaviour
                 heighestRightChunk++;
             }
         }
+
+        position = new Vector3(-5.0f, heighestLeftChunk);
+        Instantiate(endTile, position, Quaternion.AngleAxis(0, Vector3.forward));
+        position = new Vector3(-4.0f, heighestLeftChunk);
+        Instantiate(endTile, position, Quaternion.AngleAxis(0, Vector3.forward));
+        position = new Vector3(-3.0f, heighestLeftChunk);
+        Instantiate(endTile, position, Quaternion.AngleAxis(0, Vector3.forward));
+        position = new Vector3(-2.0f, heighestLeftChunk);
+        Instantiate(endTile, position, Quaternion.AngleAxis(0, Vector3.forward));
+        position = new Vector3(-1.0f, heighestLeftChunk);
+        Instantiate(endTile, position, Quaternion.AngleAxis(0, Vector3.forward));
+        position = new Vector3(0.0f, heighestLeftChunk);
+        Instantiate(endTile, position, Quaternion.AngleAxis(0, Vector3.forward));
+        position = new Vector3(1.0f, heighestLeftChunk);
+        Instantiate(endTile, position, Quaternion.AngleAxis(0, Vector3.forward));
+        position = new Vector3(2.0f, heighestLeftChunk);
+        Instantiate(endTile, position, Quaternion.AngleAxis(0, Vector3.forward));
+        position = new Vector3(3.0f, heighestLeftChunk);
+        Instantiate(endTile, position, Quaternion.AngleAxis(0, Vector3.forward));
+        position = new Vector3(4.0f, heighestLeftChunk);
+        Instantiate(endTile, position, Quaternion.AngleAxis(0, Vector3.forward));
+        position = new Vector3(5.0f, heighestLeftChunk);
+        Instantiate(endTile, position, Quaternion.AngleAxis(0, Vector3.forward));
     }
 
 	private float GetCrumbleSpeed()
