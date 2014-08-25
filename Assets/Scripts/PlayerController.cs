@@ -22,13 +22,13 @@ public class PlayerController : MonoBehaviour
 	public LayerMask whatIsGround;
 
 	private Animator anim;
-	private AudioSource jumpAudio;
+	private AudioSource[] audio;
 
 	// Use this for initialization
 	void Start ()
 	{
 		anim = GetComponent<Animator>();
-		jumpAudio = GetComponent<AudioSource>();
+		audio = GetComponents<AudioSource>();
 
 		SwitchHelper.Switch(anim, player);
 
@@ -71,13 +71,14 @@ public class PlayerController : MonoBehaviour
 		{
 			jumping = true;
 			anim.SetBool("Jump", true);
-			jumpAudio.PlayOneShot(jumpAudio.clip);
+			audio[0].Play();
 		}
 
 		if (!jumping && !grounded)
 		{
 			dead = true;
 			anim.SetBool("Fall", true);
+			audio[1].Play();
 		}
 		rigidbody2D.velocity = dead ? Vector2.zero : move;
 	}
