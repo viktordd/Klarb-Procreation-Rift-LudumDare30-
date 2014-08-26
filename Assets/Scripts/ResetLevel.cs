@@ -1,8 +1,10 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class ResetLevel : MonoBehaviour {
+public class ResetLevel : MonoBehaviour
+{
 
+    public LevelNumber levelNumber;
 
 	// Use this for initialization
 	void Start () {
@@ -24,6 +26,7 @@ public class ResetLevel : MonoBehaviour {
 
 		if (PlayerLeftAtEnd && PlayerRightAtEnd)
 		{
+            PlayerPrefs.SetInt("LevelNumber", levelNumber.LevelDiffNumber);
 			Application.LoadLevel("ProcreationScene");
 		}
 	}

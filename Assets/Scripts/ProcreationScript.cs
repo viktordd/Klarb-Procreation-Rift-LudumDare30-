@@ -14,7 +14,7 @@ public class ProcreationScript : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-        quoteList = getQuoteList();
+        quoteList = getQuoteList();        
 	}
 	
 	// Update is called once per frame
@@ -23,10 +23,11 @@ public class ProcreationScript : MonoBehaviour {
         if (counter > timeBetweenTransition)
         {
             counter = 0;
-            if (currentIndex > quoteList.Count)
+            if (currentIndex >= quoteList.Count)
             {
-                //TODO: THIS
-                //INCREMENT LEVEL AND SWITCH BACK TO GAME
+                var newLevel = PlayerPrefs.GetInt("LevelNumber") + 1;
+                PlayerPrefs.SetInt("LevelNumber", newLevel);
+                Application.LoadLevel("main");
             }
             writeText(quoteList[currentIndex], currentIndex);
             currentIndex++;

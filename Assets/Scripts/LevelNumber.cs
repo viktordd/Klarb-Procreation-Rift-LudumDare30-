@@ -4,23 +4,30 @@ using System.Collections;
 public class LevelNumber : MonoBehaviour
 {
 
-    private static LevelNumber instance = null;
-    public static LevelNumber Instance { get { return instance; } }
+    
     public int LevelDiffNumber { get; set; }
+    private bool firstLoad = true;
 
 	// Use this for initialization
-	void Awake () {
-        if (instance != null && instance != this)
+	void Awake ()
+	{
+	    if (PlayerPrefs.GetInt("FirstLoad", 1) == 0)
+	    {
+	        firstLoad = false;
+	    }
+
+	    if (PlayerPrefs.GetInt("LevelNumber") > 1 && firstLoad == false)
+	        LevelDiffNumber = PlayerPrefs.GetInt("LevelNumber");
+        else if (PlayerPrefs.GetInt("LevelNumber") > 1 && firstLoad == true)
         {
-            Destroy(this.gameObject);
-            return;
+            PlayerPrefs.SetInt("FirstLoad", 0);
+            PlayerPrefs.SetInt("LevelNumber", 1);
+            LevelDiffNumber = 1;
         }
         else
         {
-            instance = this;
+            LevelDiffNumber = 1;
         }
-
-        DontDestroyOnLoad(this.gameObject);
 	}
 	
 	// Update is called once per frame
