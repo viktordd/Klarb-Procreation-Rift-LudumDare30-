@@ -9,7 +9,8 @@ public class GameOverScript : MonoBehaviour {
 
     // Use this for initialization
     void Start()
-    {
+	{
+		ButtonList[currentIndex].Select();
         ButtonList[0].ButtonFunction = () => { Application.LoadLevel("main"); };
         ButtonList[1].ButtonFunction = () => { Application.LoadLevel("TitleScreen"); };
     }

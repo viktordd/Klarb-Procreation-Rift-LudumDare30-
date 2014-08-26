@@ -10,6 +10,7 @@ public class TitleScreenScript : MonoBehaviour
     // Use this for initialization
     void Start()
     {
+		ButtonList[currentIndex].Select();
         ButtonList[0].ButtonFunction = () =>
         {
 			PlayerPrefs.SetInt("LevelNumber", LevelGenerator.MinLvl);

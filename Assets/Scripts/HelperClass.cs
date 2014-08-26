@@ -6,8 +6,6 @@ public class HelperClass {
 
     public static int HandleMenuButtons(List<MyButton> buttonList, int currentIndex)
     {
-        buttonList[currentIndex].Select();
-
         if (Input.GetButtonDown("ConfirmKey"))
         {
             buttonList[currentIndex].Hit();
@@ -20,6 +18,7 @@ public class HelperClass {
             {
                 currentIndex = 0;
             }
+			buttonList[currentIndex].Select();
         }
         else if (Input.GetButtonDown("UpKey"))
         {
@@ -28,7 +27,8 @@ public class HelperClass {
             if (currentIndex < 0)
             {
                 currentIndex = (buttonList.Count - 1);
-            }
+			}
+			buttonList[currentIndex].Select();
         }
         return currentIndex;
     }
