@@ -10,7 +10,12 @@ public class TitleScreenScript : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-        ButtonList[0].ButtonFunction = () => { Application.LoadLevel("SlideScene"); };
+        ButtonList[0].ButtonFunction = () =>
+        {
+			PlayerPrefs.SetInt("LevelNumber", LevelGenerator.MinLvl);
+			PlayerPrefs.Save();
+	        Application.LoadLevel("SlideScene");
+        };
         ButtonList[1].ButtonFunction = () => { Application.LoadLevel("ControlsScene"); };
     }
 

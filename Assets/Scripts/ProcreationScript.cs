@@ -27,6 +27,7 @@ public class ProcreationScript : MonoBehaviour {
             {
                 var newLevel = PlayerPrefs.GetInt("LevelNumber") + 1;
                 PlayerPrefs.SetInt("LevelNumber", newLevel);
+				PlayerPrefs.Save();
                 Application.LoadLevel("main");
             }
             writeText(quoteList[currentIndex], currentIndex);

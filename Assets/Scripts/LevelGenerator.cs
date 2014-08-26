@@ -2,6 +2,7 @@
 
 public class LevelGenerator : MonoBehaviour
 {
+	public const int MinLvl = 1;
     public LevelNumber LevelNumber;
     private int LevelOfStage;
     public int SizeOfStage;
@@ -16,6 +17,8 @@ public class LevelGenerator : MonoBehaviour
 	void Start ()
 	{
         LevelOfStage = LevelNumber.LevelDiffNumber;
+		if (LevelOfStage < MinLvl)
+			LevelOfStage = MinLvl;
         ChunkManager = new ChunkManager();
         level = ChunkManager.GetAllChunks(LevelOfStage);
 

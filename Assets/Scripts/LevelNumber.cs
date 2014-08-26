@@ -3,35 +3,27 @@ using System.Collections;
 
 public class LevelNumber : MonoBehaviour
 {
-
-    
-    public int LevelDiffNumber { get; set; }
-    private bool firstLoad = true;
+	public const int MinLvl = 1;
+	public int LevelDiffNumber { get; set; }
 
 	// Use this for initialization
-	void Awake ()
+	void Awake()
 	{
-	    if (PlayerPrefs.GetInt("FirstLoad", 1) == 0)
-	    {
-	        firstLoad = false;
-	    }
+		int lvlNum = PlayerPrefs.GetInt("LevelNumber");
 
-	    if (PlayerPrefs.GetInt("LevelNumber") > 1 && firstLoad == false)
-	        LevelDiffNumber = PlayerPrefs.GetInt("LevelNumber");
-        else if (PlayerPrefs.GetInt("LevelNumber") > 1 && firstLoad == true)
-        {
-            PlayerPrefs.SetInt("FirstLoad", 0);
-            PlayerPrefs.SetInt("LevelNumber", 1);
-            LevelDiffNumber = 1;
-        }
-        else
-        {
-            LevelDiffNumber = 1;
-        }
+		if (lvlNum <= LevelGenerator.MinLvl)
+		{
+			PlayerPrefs.SetInt("LevelNumber", LevelGenerator.MinLvl);
+			PlayerPrefs.Save();
+			LevelDiffNumber = LevelGenerator.MinLvl;
+		}
+		else if (lvlNum > LevelGenerator.MinLvl)
+			LevelDiffNumber = lvlNum;
 	}
-	
+
 	// Update is called once per frame
-	void Update () {
-	
+	void Update()
+	{
+
 	}
 }

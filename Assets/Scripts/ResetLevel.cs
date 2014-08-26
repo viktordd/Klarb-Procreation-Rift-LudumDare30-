@@ -35,10 +35,6 @@ public class ResetLevel : MonoBehaviour
 
 		if (PlayerLeftAtEnd && PlayerRightAtEnd)
 		{
-
-            PlayerPrefs.SetInt("LevelNumber", levelNumber.LevelDiffNumber);
-			Application.LoadLevel("ProcreationScene");
-
 			if (!bothPlayersAtEnd)
 			{
 				bothPlayersAtEnd = true;
