@@ -21,7 +21,7 @@ public class TextureScript : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
-        if (Input.GetButton("EscapeKey"))
+        if (Input.GetButton("EscapeKey") || Input.GetButton("JoyConfirmKey"))
         {
             goToGame();
         }

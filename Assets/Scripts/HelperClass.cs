@@ -6,11 +6,12 @@ public class HelperClass {
 
     public static int HandleMenuButtons(List<MyButton> buttonList, int currentIndex)
     {
-        if (Input.GetButtonDown("ConfirmKey"))
+        
+        if (Input.GetButtonDown("ConfirmKey") || Input.GetButtonDown("JoyConfirmKey"))
         {
             buttonList[currentIndex].Hit();
         }
-        else if (Input.GetButtonDown("DownKey"))
+        else if (Input.GetButtonDown("DownKey") || Input.GetAxisRaw("JoyVerticalLeft") == -1)
         {
             buttonList[currentIndex].Deselect();
             currentIndex++;
@@ -20,7 +21,7 @@ public class HelperClass {
             }
 			buttonList[currentIndex].Select();
         }
-        else if (Input.GetButtonDown("UpKey"))
+        else if (Input.GetButtonDown("UpKey") || Input.GetAxisRaw("JoyVerticalLeft") == 1)
         {
             buttonList[currentIndex].Deselect();
             currentIndex--;

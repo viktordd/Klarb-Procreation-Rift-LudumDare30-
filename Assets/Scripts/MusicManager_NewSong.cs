@@ -19,8 +19,15 @@ public class MusicManager_NewSong : MonoBehaviour
 
 
 	    var gameMusic = GameObject.Find("GameMusic");
+
+	    if (gameMusic.audio.clip.name == "menu" && NewMusic.name == "menu")
+	    {
+	        return;
+	    }
+
 	    gameMusic.audio.clip = NewMusic;
-        gameMusic.audio.Play();
+	    gameMusic.audio.Play();
+	    
 	}
 	
 	// Update is called once per frame
