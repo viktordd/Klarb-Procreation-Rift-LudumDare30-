@@ -102,7 +102,7 @@ public class PlayerController : MonoBehaviour
 		if (isAtEnd)
 			SetPlayerAtEnd();
 
-		rigidbody2D.velocity = move;
+		GetComponent<Rigidbody2D>().velocity = move;
 	}
 
 	// Called from at the end of Jump of animation.
@@ -113,7 +113,7 @@ public class PlayerController : MonoBehaviour
 		anim.SetBool("Jump", false);
 		if (!hasGroundBelow)
 		{
-			StartFallSequence(rigidbody2D.velocity);
+			StartFallSequence(GetComponent<Rigidbody2D>().velocity);
 		}
 	}
 
@@ -122,9 +122,9 @@ public class PlayerController : MonoBehaviour
 		dead = true;
 		anim.SetBool("Fall", true);
 		audio[fallSFXindx].Play();
-		Destroy(collider2D);
+		Destroy(GetComponent<Collider2D>());
 		spriteRenderer.sortingLayerName = "Falling Player";
-		rigidbody2D.velocity = Vector2.ClampMagnitude(move, moveSpeed/3f);
+		GetComponent<Rigidbody2D>().velocity = Vector2.ClampMagnitude(move, moveSpeed/3f);
 	}
 
 	// Called from at the end of Jump of animation.

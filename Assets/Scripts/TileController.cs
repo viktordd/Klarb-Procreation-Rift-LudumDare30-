@@ -61,7 +61,7 @@ public class TileController : MonoBehaviour
 	public void StartFalling()
 	{
 		spriteRenderer.sortingLayerName = "Falling Tile";
-		Destroy(collider2D);
+		Destroy(GetComponent<Collider2D>());
 	}
 
 	public void EndFalling()

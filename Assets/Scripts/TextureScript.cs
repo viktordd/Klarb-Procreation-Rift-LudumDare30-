@@ -34,9 +34,9 @@ public class TextureScript : MonoBehaviour {
 
         if (fadingOut)
         {
-            Color textureColor = guiTexture.color;
+            Color textureColor = GetComponent<GUITexture>().color;
             textureColor.a = opacityValue;
-            this.guiTexture.color = textureColor;
+            this.GetComponent<GUITexture>().color = textureColor;
             opacityValue -= (Time.deltaTime / fadeSpeed);
             if (opacityValue <= 0.0f)
             {
@@ -48,9 +48,9 @@ public class TextureScript : MonoBehaviour {
         }
         if (fadingIn)
         {
-            Color textureColor = guiTexture.color;
+            Color textureColor = GetComponent<GUITexture>().color;
             textureColor.a = opacityValue;
-            this.guiTexture.color = textureColor;
+            this.GetComponent<GUITexture>().color = textureColor;
             opacityValue += (Time.deltaTime / fadeSpeed);
             if (opacityValue >= 0.5f)
             {
@@ -68,10 +68,10 @@ public class TextureScript : MonoBehaviour {
         }
         else
         {
-            this.guiTexture.texture = Textures[currentSlide];
+            this.GetComponent<GUITexture>().texture = Textures[currentSlide];
         }
-        this.guiText.text = "(Press Esc to skip)";
-        this.guiText.transform.Translate(0, 0, 9999);
+        this.GetComponent<GUIText>().text = "(Press Esc to skip)";
+        this.GetComponent<GUIText>().transform.Translate(0, 0, 9999);
     }
 
     private void goToGame()

@@ -17,16 +17,15 @@ public class MusicManager_NewSong : MonoBehaviour
 	            NewMusic = RandomBonusMusic;
 	    }
 
+		var audio = GetComponent<AudioSource>();
 
-	    var gameMusic = GameObject.Find("GameMusic");
-
-	    if (gameMusic.audio.clip.name == "menu" && NewMusic.name == "menu")
+	    if (audio.clip != null && audio.clip.name == "menu" && NewMusic.name == "menu")
 	    {
 	        return;
 	    }
 
-	    gameMusic.audio.clip = NewMusic;
-	    gameMusic.audio.Play();
+	    audio.clip = NewMusic;
+	    audio.Play();
 	    
 	}
 	
