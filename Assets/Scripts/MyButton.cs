@@ -1,21 +1,24 @@
-﻿using UnityEngine;
+﻿using System;
 using System.Collections;
-using System;
+using UnityEngine;
 
-public class MyButton : MonoBehaviour {
+public class MyButton : MonoBehaviour
+{
 
     public Sprite[] SpriteCollection;
     public Action ButtonFunction;
 
-	// Use this for initialization
-	void Start () {
-	
-	}
-	
-	// Update is called once per frame
-	void Update () {
-	    
-	}
+    // Use this for initialization
+    void Start()
+    {
+
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+
+    }
 
     void OnMouseEnter()
     {

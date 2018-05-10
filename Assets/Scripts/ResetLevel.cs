@@ -1,5 +1,6 @@
-﻿using UnityEngine;
-using System.Collections;
+﻿using System.Collections;
+using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class ResetLevel : MonoBehaviour
 {
@@ -25,12 +26,12 @@ public class ResetLevel : MonoBehaviour
 
 		if (Input.GetButtonDown("Reset"))
 		{
-			Application.LoadLevel(Application.loadedLevelName);
+			SceneManager.LoadScene(SceneManager.GetActiveScene().name);
 		}
 
         if (PlayerLeftDead || PlayerRightDead)
         {
-            Application.LoadLevel("GameOverScene");
+            SceneManager.LoadScene("GameOverScene");
 		}
 
 		if (PlayerLeftAtEnd && PlayerRightAtEnd)
@@ -45,12 +46,11 @@ public class ResetLevel : MonoBehaviour
 		{
 			bothPlayersAtEnd = false;
 			CancelInvoke("GoToProcreationScene");
-
 		}
 	}
 
 	void GoToProcreationScene()
 	{
-		Application.LoadLevel("ProcreationScene");
+		SceneManager.LoadScene("ProcreationScene");
 	}
 }

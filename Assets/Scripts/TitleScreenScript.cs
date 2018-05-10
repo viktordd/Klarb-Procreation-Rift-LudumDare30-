@@ -1,6 +1,7 @@
-﻿using UnityEngine;
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class TitleScreenScript : MonoBehaviour
 {
@@ -11,14 +12,14 @@ public class TitleScreenScript : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-		ButtonList[currentIndex].Select();
+        ButtonList[currentIndex].Select();
         ButtonList[0].ButtonFunction = () =>
         {
-			PlayerPrefs.SetInt("LevelNumber", LevelGenerator.MinLvl);
-			PlayerPrefs.Save();
-	        Application.LoadLevel("SlideScene");
+            PlayerPrefs.SetInt("LevelNumber", LevelGenerator.MinLvl);
+            PlayerPrefs.Save();
+            SceneManager.LoadScene("SlideScene");
         };
-        ButtonList[1].ButtonFunction = () => { Application.LoadLevel("ControlsScene"); };
+        ButtonList[1].ButtonFunction = () => { SceneManager.LoadScene("ControlsScene"); };
     }
 
     // Update is called once per frame
@@ -35,6 +36,6 @@ public class TitleScreenScript : MonoBehaviour
         }
 
         if (m_isAxisInUseY == false)
-            currentIndex = HelperClass.HandleMenuButtons(ButtonList, currentIndex);        
+            currentIndex = HelperClass.HandleMenuButtons(ButtonList, currentIndex);
     }
 }

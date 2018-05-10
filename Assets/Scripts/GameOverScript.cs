@@ -1,6 +1,7 @@
-﻿using UnityEngine;
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameOverScript : MonoBehaviour {
 
@@ -19,8 +20,8 @@ public class GameOverScript : MonoBehaviour {
         }
 
 		ButtonList[currentIndex].Select();
-        ButtonList[0].ButtonFunction = () => { Application.LoadLevel("main"); };
-        ButtonList[1].ButtonFunction = () => { Application.LoadLevel("TitleScreen"); };
+        ButtonList[0].ButtonFunction = () => { SceneManager.LoadScene("main"); };
+        ButtonList[1].ButtonFunction = () => { SceneManager.LoadScene("TitleScreen"); };
     }
 
     // Update is called once per frame

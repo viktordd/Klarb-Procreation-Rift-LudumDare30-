@@ -1,5 +1,6 @@
-﻿using UnityEngine;
-using System.Collections;
+﻿using System.Collections;
+using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class ControlsScreenScript : MonoBehaviour {
 
@@ -12,7 +13,7 @@ public class ControlsScreenScript : MonoBehaviour {
 	void Update () {
         if (Input.GetButtonDown("ConfirmKey") || Input.GetButtonDown("JoyConfirmKey"))
         {
-            Application.LoadLevel("TitleScreen");
+            SceneManager.LoadScene("TitleScreen");
         }
 	}
 }

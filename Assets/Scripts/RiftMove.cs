@@ -1,10 +1,10 @@
-﻿using UnityEngine;
-using System.Collections;
+﻿using System.Collections;
+using UnityEngine;
 
 public class RiftMove : MonoBehaviour
 {
 
-    public Camera camera;
+    public Camera mainCamera;
 
 	// Use this for initialization
 	void Start () {
@@ -13,6 +13,6 @@ public class RiftMove : MonoBehaviour
 	
 	// Update is called once per frame
 	void Update () {
-	    this.transform.position = new Vector3(0, camera.transform.position.y);
+	    this.transform.position = new Vector3(0, mainCamera.transform.position.y);
 	}
 }

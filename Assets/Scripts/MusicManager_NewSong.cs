@@ -1,5 +1,5 @@
-﻿using UnityEngine;
-using System.Collections;
+﻿using System.Collections;
+using UnityEngine;
 
 public class MusicManager_NewSong : MonoBehaviour
 {
@@ -17,7 +17,8 @@ public class MusicManager_NewSong : MonoBehaviour
 	            NewMusic = RandomBonusMusic;
 	    }
 
-		var audio = GetComponent<AudioSource>();
+		var gameMusic = GameObject.Find("GameMusic");
+		var audio = gameMusic.GetComponent<AudioSource>();
 
 	    if (audio.clip != null && audio.clip.name == "menu" && NewMusic.name == "menu")
 	    {

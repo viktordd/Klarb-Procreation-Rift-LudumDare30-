@@ -1,40 +1,62 @@
 ﻿using System;
-using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.SceneManagement;
 
-public class ProcreationScript : MonoBehaviour {
+public class ProcreationScript : MonoBehaviour
+{
 
     private float yOffset = -50f;
     private List<Quote> quoteList;
-    private const float timeBetweenTransition = 2.0f;
+    private const float timeBetweenTransition = 2.5f;
     private float counter = 0;
     private int currentIndex = 0;
     private float initialOffset = -100f;
 
-	// Use this for initialization
-	void Start () {
-        quoteList = getQuoteList();        
-	}
-	
-	// Update is called once per frame
-	void Update () {
+    // Use this for initialization
+    void Start()
+    {
+        quoteList = getQuoteList();
+        writeNextMessage();
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
         counter += Time.deltaTime;
         if (counter > timeBetweenTransition)
         {
             counter = 0;
-            if (currentIndex >= quoteList.Count)
+            if (writeNextMessage())
+            {
+                if (currentIndex >= quoteList.Count)
+                {
+                    counter = -timeBetweenTransition;
+                }
+            }
+            else
             {
                 var newLevel = PlayerPrefs.GetInt("LevelNumber") + 1;
                 PlayerPrefs.SetInt("LevelNumber", newLevel);
-				PlayerPrefs.Save();
-                Application.LoadLevel("main");
+                PlayerPrefs.Save();
+                SceneManager.LoadScene("main");
             }
+
+        }
+
+    }
+
+    private bool writeNextMessage()
+    {
+        if (currentIndex < quoteList.Count)
+        {
             writeText(quoteList[currentIndex], currentIndex);
             currentIndex++;
+            return true;
         }
-        
-	}
+        return false;
+    }
 
     private List<Quote> getQuoteList()
     {
@@ -42,7 +64,7 @@ public class ProcreationScript : MonoBehaviour {
         Quote[] quotes = jokeList[rand.Next(jokeList.Length)];
         List<Quote> qList = new List<Quote>();
         qList.Add(new Quote("The two Klarbs embrace at the middle of the rift", Color.white));
-        foreach(Quote q in quotes)
+        foreach (Quote q in quotes)
         {
             qList.Add(q);
         }

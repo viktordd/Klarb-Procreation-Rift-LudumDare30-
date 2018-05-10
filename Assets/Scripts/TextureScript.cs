@@ -1,5 +1,6 @@
-﻿using UnityEngine;
-using System.Collections;
+﻿using System.Collections;
+using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class TextureScript : MonoBehaviour {
 
@@ -76,6 +77,6 @@ public class TextureScript : MonoBehaviour {
 
     private void goToGame()
     {
-        Application.LoadLevel("main");
+        SceneManager.LoadScene("main");
     }
 }

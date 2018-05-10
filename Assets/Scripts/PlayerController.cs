@@ -32,14 +32,14 @@ public class PlayerController : MonoBehaviour
 	public LayerMask whatIsEnd;
 
 	private Animator anim;
-	private AudioSource[] audio;
+	private AudioSource[] audioSource;
 	private SpriteRenderer spriteRenderer;
 
 	// Use this for initialization
 	void Start ()
 	{
 		anim = GetComponent<Animator>();
-		audio = GetComponents<AudioSource>();
+		audioSource = GetComponents<AudioSource>();
 		spriteRenderer = GetComponent<SpriteRenderer>();
 
 		SwitchHelper.Switch(anim, player);
@@ -90,7 +90,7 @@ public class PlayerController : MonoBehaviour
 		{
 			jumping = true;
 			anim.SetBool("Jump", true);
-			audio[jumpSFXindx].Play();
+			audioSource[jumpSFXindx].Play();
 		}
 
 		if (!jumping && !hasGroundBelow)
@@ -121,7 +121,7 @@ public class PlayerController : MonoBehaviour
 	{
 		dead = true;
 		anim.SetBool("Fall", true);
-		audio[fallSFXindx].Play();
+		audioSource[fallSFXindx].Play();
 		Destroy(GetComponent<Collider2D>());
 		spriteRenderer.sortingLayerName = "Falling Player";
 		GetComponent<Rigidbody2D>().velocity = Vector2.ClampMagnitude(move, moveSpeed/3f);
@@ -135,7 +135,7 @@ public class PlayerController : MonoBehaviour
 
 	public void SetPlayerAsDead()
 	{
-		if (audio[fallSFXindx].isPlaying)
+		if (audioSource[fallSFXindx].isPlaying)
 			return;
 		if (player == "Left")
 	    {
