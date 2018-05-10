@@ -3,7 +3,6 @@ using UnityEngine;
 
 public class MusicManager : MonoBehaviour
 {
-
     private static MusicManager instance = null;
     public static MusicManager Instance { get { return instance; } }
     public static AudioClip SongName;
@@ -30,6 +29,6 @@ public class MusicManager : MonoBehaviour
 	
 	// Update is called once per frame
 	void Update () {
-	
+	    this.transform.position = new Vector3(0, Camera.main.transform.position.y);
 	}
 }
