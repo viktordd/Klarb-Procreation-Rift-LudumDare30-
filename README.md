@@ -20,7 +20,13 @@ All animations are created as sprites with each individual frame drawn separatel
 # How to Setup this Project Locally 
 You would need to download the free version of Unity to run the game locally. https://unity3d.com/
 To Run the game locally clone the source code, then open it with Unity.
+
+<img src="/docs/UnityOpen.PNG" alt="open" width="400px">
+
 Open the TitleScreen scene under Assets, then hit the play button.
+
+<img src="/docs/KlarbTitleScene.PNG" alt="scene" width="400px"> <img src="/docs/KlarbPlay.PNG" alt="scene" width="400px">
+
 
 # LudumDare30
 Ludum Dare is a game jam competition that is held 3 times a year. The competition challenges people to create a game in a short amount of time, 48 to 72 hours. All games should follow a theme that is announced at the start of the competition. After the competition ends. people can play and rate the games to determine the winner.
